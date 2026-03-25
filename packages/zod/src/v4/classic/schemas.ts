@@ -1156,6 +1156,19 @@ export function array<T extends core.SomeType>(element: T, params?: string | cor
   return core._array(ZodArray, element as any, params) as any;
 }
 
+/**
+ * Creates an array schema that requires at least `minItems` elements.
+ * This is a convenience wrapper around `array(element).min(minItems)`.
+ */
+export function arrayWithMinItems<T extends core.SomeType>(
+  element: T,
+  minItems: number,
+  params?: string | core.$ZodArrayParams
+): ZodArray<T> {
+  const schema = core._array(ZodArray, element as any, params) as any;
+  return schema.min(minItems > 0 ? minItems - 1 : 0);
+}
+
 // .keyof
 export function keyof<T extends ZodObject>(schema: T): ZodEnum<util.KeysEnum<T["_zod"]["output"]>> {
   const shape = schema._zod.def.shape;

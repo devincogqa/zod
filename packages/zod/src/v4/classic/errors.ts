@@ -26,6 +26,13 @@ const initializer = (inst: ZodError, issues: core.$ZodIssue[]) => {
   $ZodError.init(inst, issues);
   inst.name = "ZodError";
   Object.defineProperties(inst, {
+    toJSON: {
+      value: () => ({
+        name: inst.name,
+        issues: inst.issues,
+        message: inst.message,
+      }),
+    },
     format: {
       value: (mapper: any) => core.formatError(inst, mapper),
       // enumerable: false,

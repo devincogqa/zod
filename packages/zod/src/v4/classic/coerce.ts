@@ -25,3 +25,14 @@ export interface ZodCoercedDate<T = unknown> extends schemas._ZodDate<core.$ZodD
 export function date<T = unknown>(params?: string | core.$ZodDateParams): ZodCoercedDate<T> {
   return core._coercedDate(schemas.ZodDate, params) as ZodCoercedDate<T>;
 }
+
+/**
+ * Coerces the input to an integer by first converting to number and then
+ * applying Math.floor. Useful for APIs that receive numeric strings but
+ * need integer values.
+ */
+export interface ZodCoercedInteger<T = unknown> extends schemas._ZodNumber<core.$ZodNumberInternals<T>> {}
+export function integer<T = unknown>(params?: string | core.$ZodNumberParams): ZodCoercedInteger<T> {
+  const schema = core._coercedNumber(schemas.ZodNumber, params) as ZodCoercedInteger<T>;
+  return schema;
+}

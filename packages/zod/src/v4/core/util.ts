@@ -481,6 +481,70 @@ export function escapeRegex(str: string): string {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+/**
+ * Truncates a string to the specified maximum length.
+ * If the string exceeds maxLength, it is truncated and an ellipsis is appended.
+ */
+export function truncate(str: string, maxLength: number): string {
+  if (maxLength < 0) {
+    return str;
+  }
+  if (str.length <= maxLength) {
+    return str;
+  }
+  return str.slice(0, maxLength) + "...";
+}
+
+/**
+ * Deeply compares two values for structural equality.
+ * Supports objects, arrays, dates, maps, sets, and primitives.
+ */
+export function deepEqual(a: unknown, b: unknown): boolean {
+  if (a === b) return true;
+  if (a === null || b === null) return false;
+  if (typeof a !== typeof b) return false;
+
+  if (a instanceof Date && b instanceof Date) {
+    return a.getTime() === b.getTime();
+  }
+
+  if (a instanceof Map && b instanceof Map) {
+    if (a.size !== b.size) return false;
+    for (const [key, val] of a) {
+      if (!b.has(key) || !deepEqual(val, b.get(key))) return false;
+    }
+    return true;
+  }
+
+  if (a instanceof Set && b instanceof Set) {
+    if (a.size !== b.size) return false;
+    for (const val of a) {
+      if (!b.has(val)) return false;
+    }
+    return true;
+  }
+
+  if (Array.isArray(a) && Array.isArray(b)) {
+    if (a.length !== b.length) return false;
+    for (let i = 0; i < a.length; i++) {
+      if (!deepEqual(a[i], b[i])) return false;
+    }
+    return true;
+  }
+
+  if (typeof a === "object" && typeof b === "object") {
+    const keysA = Object.keys(a as object);
+    const keysB = Object.keys(b as object);
+    if (keysA.length !== keysB.length) return false;
+    for (const key of keysA) {
+      if (!deepEqual((a as any)[key], (b as any)[key])) return false;
+    }
+    return true;
+  }
+
+  return false;
+}
+
 // zod-specific utils
 export function clone<T extends schemas.$ZodType>(inst: T, def?: T["_zod"]["def"], params?: { parent: boolean }): T {
   const cl = new inst._zod.constr(def ?? inst._zod.def);

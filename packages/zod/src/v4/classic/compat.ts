@@ -68,3 +68,13 @@ export type ZodRawShape = core.$ZodShape;
 
 /** @deprecated Do not use. Stub definition, only included for zod-to-json-schema compatibility. */
 export enum ZodFirstPartyTypeKind {}
+
+/**
+ * Helper to check if a value matches a given Zod schema.
+ * Returns true if the value is valid, false otherwise.
+ * Useful for quick validation without needing to handle errors.
+ */
+export function is<T extends core.$ZodType>(schema: T, value: unknown): value is core.output<T> {
+  const result = core._safeParse(undefined as any)(schema, value);
+  return result.success;
+}
