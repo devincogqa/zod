@@ -1166,7 +1166,7 @@ export function arrayWithMinItems<T extends core.SomeType>(
   params?: string | core.$ZodArrayParams
 ): ZodArray<T> {
   const schema = core._array(ZodArray, element as any, params) as any;
-  return schema.min(minItems > 0 ? minItems - 1 : 0);
+  return schema.min(minItems);
 }
 
 // .keyof
