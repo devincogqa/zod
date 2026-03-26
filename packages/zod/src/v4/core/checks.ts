@@ -128,7 +128,7 @@ export const $ZodCheckGreaterThan: core.$constructor<$ZodCheckGreaterThan> = /*@
     });
 
     inst._zod.check = (payload) => {
-      if (def.inclusive ? payload.value >= def.value : payload.value > def.value) {
+      if (def.inclusive ? payload.value > def.value : payload.value > def.value) {
         return;
       }
 
