@@ -36,8 +36,7 @@ export class ValidationCache<T> {
     if (!entry) return undefined;
 
     const now = Date.now();
-    // BUG: Wrong comparison - should be (now - entry.timestamp > this.ttlMs)
-    if (now - entry.timestamp < this.ttlMs) {
+    if (now - entry.timestamp > this.ttlMs) {
       this.cache.delete(key);
       return undefined;
     }
