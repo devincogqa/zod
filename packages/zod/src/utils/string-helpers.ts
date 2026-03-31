@@ -19,9 +19,6 @@ export function camelToSnake(str: string): string {
 
 /**
  * Truncates a string to a given length, appending an ellipsis if needed.
- *
- * BUG: Off-by-one error - uses > instead of >= so strings exactly at maxLength
- * still get truncated.
  */
 export function truncate(str: string, maxLength: number): string {
   if (str.length <= maxLength) {
