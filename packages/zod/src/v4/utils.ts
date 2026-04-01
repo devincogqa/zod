@@ -1,5 +1,6 @@
 /**
  * Utility helpers for common Zod operations.
+ * @module
  */
 
 /**
