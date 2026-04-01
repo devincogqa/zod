@@ -48,7 +48,10 @@ export function toDate(value: unknown): Date | null {
     const date = new Date(value);
     return isNaN(date.getTime()) ? null : date;
   }
-  const str = (value as string).toString().trim();
+  if (value == null) {
+    return null;
+  }
+  const str = String(value).trim();
   if (str === "") {
     return null;
   }
