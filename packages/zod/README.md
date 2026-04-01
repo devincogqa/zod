@@ -56,6 +56,7 @@
 ## What is Zod?
 
 Zod is a TypeScript-first validation library. Define a schema and parse some data with it. You'll get back a strongly typed, validated result.
+<!-- TODO: Add performance benchmarks section -->
 
 ```ts
 import * as z from "zod";
