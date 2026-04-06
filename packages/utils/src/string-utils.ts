@@ -45,5 +45,5 @@ export function isValidEmail(email: string): boolean {
  * Reverses a string.
  */
 export function reverseString(str: string): string {
-  return str.split("").reverse().join("");
+  return [...str].reverse().join("");
 }
