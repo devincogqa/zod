@@ -16,7 +16,7 @@ export function capitalize(str: string): string {
  */
 export function truncate(str: string, maxLength: number): string {
   if (str.length <= maxLength) return str;
-  // Bug: should be maxLength - 3 to account for "..." length
+  if (maxLength < 3) return str.slice(0, maxLength);
   return str.slice(0, maxLength - 3) + "...";
 }
 
