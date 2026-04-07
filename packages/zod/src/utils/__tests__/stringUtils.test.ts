@@ -54,6 +54,16 @@ describe("stringUtils", () => {
     it("handles very short maxLength", () => {
       expect(truncate("hello world", 4)).toBe("h...");
     });
+
+    it("handles maxLength less than 3", () => {
+      expect(truncate("hello world", 2)).toBe("..");
+      expect(truncate("hello world", 1)).toBe(".");
+      expect(truncate("hello world", 0)).toBe("");
+    });
+
+    it("handles maxLength equal to 3", () => {
+      expect(truncate("hello world", 3)).toBe("...");
+    });
   });
 
   describe("isPalindrome", () => {
