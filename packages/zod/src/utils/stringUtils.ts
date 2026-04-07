@@ -19,8 +19,6 @@ export function reverseString(str: string): string {
 
 /**
  * Truncates a string to a given length and appends an ellipsis.
- * BUG: Off-by-one error — uses `>` instead of `>=`, so strings exactly
- * at maxLength still get truncated.
  */
 export function truncate(str: string, maxLength: number): string {
   if (str.length > maxLength) {
@@ -44,7 +42,9 @@ export function countOccurrences(str: string, sub: string): number {
   if (sub.length === 0) return 0;
   let count = 0;
   let pos = 0;
-  while ((pos = str.indexOf(sub, pos)) !== -1) {
+  for (;;) {
+    pos = str.indexOf(sub, pos);
+    if (pos === -1) break;
     count++;
     pos += sub.length;
   }

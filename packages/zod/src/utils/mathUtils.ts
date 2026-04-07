@@ -11,7 +11,6 @@ export function clamp(value: number, min: number, max: number): number {
 
 /**
  * Calculates the average of an array of numbers.
- * Returns 0 for an empty array.
  */
 export function average(arr: number[]): number {
   if (arr.length === 0) return 0;

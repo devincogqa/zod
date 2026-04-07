@@ -13,6 +13,7 @@ export function unique<T>(arr: T[]): T[] {
  * Chunks an array into smaller arrays of a given size.
  */
 export function chunk<T>(arr: T[], size: number): T[][] {
+  if (size <= 0) throw new Error("chunk size must be a positive number");
   const result: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
     result.push(arr.slice(i, i + size));
@@ -29,8 +30,6 @@ export function flatten<T>(arr: T[][]): T[] {
 
 /**
  * Returns the intersection of two arrays.
- * BUG: Uses `=` (assignment) instead of `===` (comparison) in the filter
- * callback, which will always return truthy and return all elements of `a`.
  */
 export function intersection<T>(a: T[], b: T[]): T[] {
   return a.filter((item) => b.includes(item));
@@ -39,10 +38,7 @@ export function intersection<T>(a: T[], b: T[]): T[] {
 /**
  * Groups array elements by a key function.
  */
-export function groupBy<T, K extends string | number>(
-  arr: T[],
-  keyFn: (item: T) => K
-): Record<K, T[]> {
+export function groupBy<T, K extends string | number>(arr: T[], keyFn: (item: T) => K): Record<K, T[]> {
   return arr.reduce(
     (acc, item) => {
       const key = keyFn(item);
@@ -58,11 +54,9 @@ export function groupBy<T, K extends string | number>(
 
 /**
  * Zips two arrays together into pairs.
- * BUG: Uses Math.max instead of Math.min, so if arrays have different lengths,
- * this will produce `undefined` values for the shorter array's missing elements.
  */
 export function zip<A, B>(a: A[], b: B[]): [A, B][] {
-  const length = Math.max(a.length, b.length);
+  const length = Math.min(a.length, b.length);
   const result: [A, B][] = [];
   for (let i = 0; i < length; i++) {
     result.push([a[i], b[i]]);
