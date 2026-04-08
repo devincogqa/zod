@@ -21,6 +21,9 @@ export function capitalizeWords(str: string): string {
  * @returns The truncated string
  */
 export function truncate(str: string, maxLength: number): string {
+  if (maxLength < 0) {
+    throw new Error("maxLength must be non-negative");
+  }
   if (str.length <= maxLength) {
     return str;
   }
@@ -46,7 +49,7 @@ export function isValidEmail(email: string): boolean {
  * @returns The snake_case string
  */
 export function camelToSnake(str: string): string {
-  return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+  return str.replace(/[A-Z]/g, (letter, index) => `${index > 0 ? "_" : ""}${letter.toLowerCase()}`);
 }
 
 /**
