@@ -35,7 +35,7 @@ export function truncate(str: string, maxLength: number): string {
  */
 export function isValidEmail(email: string): boolean {
   // BUG: This regex is too permissive - it doesn't require a TLD after the dot
-  const emailRegex = /^[^\s@]+@[^\s@]+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
