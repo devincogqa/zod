@@ -24,8 +24,7 @@ export function truncate(str: string, maxLength: number): string {
   if (str.length <= maxLength) {
     return str;
   }
-  // BUG: Off-by-one error - should be maxLength - 3 to account for "..."
-  return str.slice(0, maxLength) + "...";
+  return str.slice(0, maxLength - 3) + "...";
 }
 
 /**
@@ -34,7 +33,6 @@ export function truncate(str: string, maxLength: number): string {
  * @returns Whether the email is valid
  */
 export function isValidEmail(email: string): boolean {
-  // BUG: This regex is too permissive - it doesn't require a TLD after the dot
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }

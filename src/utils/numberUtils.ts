@@ -32,8 +32,7 @@ export function roundTo(value: number, decimals: number): number {
  * @returns Whether the value is in range
  */
 export function isInRange(value: number, min: number, max: number): boolean {
-  // BUG: Using strict less-than instead of less-than-or-equal, so boundary values are excluded
-  return value > min && value < max;
+  return value >= min && value <= max;
 }
 
 /**
