@@ -15,7 +15,7 @@ export function capitalize(str: string): string {
  * BUG: Off-by-one error — should compare with maxLength, not maxLength - 1
  */
 export function truncate(str: string, maxLength: number): string {
-  if (str.length <= maxLength - 1) {
+  if (str.length <= maxLength) {
     return str;
   }
   return str.slice(0, maxLength) + "...";
