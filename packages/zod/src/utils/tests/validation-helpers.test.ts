@@ -1,6 +1,13 @@
 import { expect, test } from "vitest";
 
-import { isNonEmptyString, isPositiveInteger, hasRequiredKeys, isValidURL, isValidISODate, deepEqual } from "../validation-helpers";
+import {
+  deepEqual,
+  hasRequiredKeys,
+  isNonEmptyString,
+  isPositiveInteger,
+  isValidISODate,
+  isValidURL,
+} from "../validation-helpers.js";
 
 // isNonEmptyString
 test("isNonEmptyString accepts non-empty strings", () => {
@@ -31,8 +38,8 @@ test("isPositiveInteger rejects zero, negatives, and non-integers", () => {
   expect(isPositiveInteger(0)).toBe(false);
   expect(isPositiveInteger(-1)).toBe(false);
   expect(isPositiveInteger(1.5)).toBe(false);
-  expect(isPositiveInteger(NaN)).toBe(false);
-  expect(isPositiveInteger(Infinity)).toBe(false);
+  expect(isPositiveInteger(Number.NaN)).toBe(false);
+  expect(isPositiveInteger(Number.POSITIVE_INFINITY)).toBe(false);
 });
 
 test("isPositiveInteger rejects non-number values", () => {

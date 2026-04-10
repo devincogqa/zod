@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 
-import { capitalize, truncate, camelToSnake, isValidEmail, reverseString } from "../string-helpers";
+import { camelToSnake, capitalize, isValidEmail, reverseString, truncate } from "../string-helpers.js";
 
 // capitalize
 test("capitalize uppercases the first letter", () => {

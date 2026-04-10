@@ -13,6 +13,9 @@ export function clamp(value: number, min: number, max: number): number {
  * Calculates the average of an array of numbers.
  */
 export function average(numbers: number[]): number {
+  if (numbers.length === 0) {
+    throw new Error("Cannot compute average of an empty array");
+  }
   const sum = numbers.reduce((acc, n) => acc + n, 0);
   return sum / numbers.length;
 }
@@ -21,7 +24,7 @@ export function average(numbers: number[]): number {
  * Rounds a number to a specified number of decimal places.
  */
 export function roundTo(value: number, decimals: number): number {
-  const factor = Math.pow(10, decimals);
+  const factor = 10 ** decimals;
   return Math.round(value * factor) / factor;
 }
 

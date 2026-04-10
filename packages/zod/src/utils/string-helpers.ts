@@ -22,14 +22,17 @@ export function truncate(str: string, maxLength: number): string {
  * Converts a camelCase string to snake_case.
  */
 export function camelToSnake(str: string): string {
-  return str.replace(/([A-Z])/g, "_$1").toLowerCase();
+  return str
+    .replace(/([A-Z])/g, "_$1")
+    .toLowerCase()
+    .replace(/^_/, "");
 }
 
 /**
  * Checks if a string is a valid email address.
  */
 export function isValidEmail(value: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(value);
 }
 

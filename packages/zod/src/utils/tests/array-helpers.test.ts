@@ -1,10 +1,13 @@
 import { expect, test } from "vitest";
 
-import { chunk, unique, flatten, groupBy } from "../array-helpers";
+import { chunk, flatten, groupBy, unique } from "../array-helpers.js";
 
 // chunk
 test("chunk splits array into chunks of given size", () => {
-  expect(chunk([1, 2, 3, 4], 2)).toEqual([[1, 2], [3, 4]]);
+  expect(chunk([1, 2, 3, 4], 2)).toEqual([
+    [1, 2],
+    [3, 4],
+  ]);
   expect(chunk([1, 2, 3, 4, 5], 2)).toEqual([[1, 2], [3, 4], [5]]);
   expect(chunk([1, 2, 3], 3)).toEqual([[1, 2, 3]]);
   expect(chunk([1, 2, 3], 1)).toEqual([[1], [2], [3]]);
@@ -39,7 +42,12 @@ test("unique preserves order", () => {
 
 // flatten
 test("flatten flattens one level deep", () => {
-  expect(flatten([[1, 2], [3, 4]])).toEqual([1, 2, 3, 4]);
+  expect(
+    flatten([
+      [1, 2],
+      [3, 4],
+    ])
+  ).toEqual([1, 2, 3, 4]);
   expect(flatten([1, [2, 3], 4])).toEqual([1, 2, 3, 4]);
 });
 
@@ -53,7 +61,7 @@ test("flatten does not flatten deeper than one level", () => {
 
 // groupBy
 test("groupBy groups elements by key function", () => {
-  const result = groupBy([1, 2, 3, 4, 5], (n) => (n % 2 === 0 ? "even" : "odd"));
+  const result = groupBy([1, 2, 3, 4, 5], (n: number) => (n % 2 === 0 ? "even" : "odd"));
   expect(result).toEqual({ odd: [1, 3, 5], even: [2, 4] });
 });
 
@@ -67,7 +75,7 @@ test("groupBy groups objects by property", () => {
     { type: "b", value: 2 },
     { type: "a", value: 3 },
   ];
-  const result = groupBy(items, (item) => item.type);
+  const result = groupBy(items, (item: { type: string; value: number }) => item.type);
   expect(result).toEqual({
     a: [
       { type: "a", value: 1 },

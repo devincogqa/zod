@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 
-import { clamp, average, roundTo, median, inRange } from "../math-helpers";
+import { average, clamp, inRange, median, roundTo } from "../math-helpers.js";
 
 // clamp
 test("clamp restricts value to range", () => {
@@ -27,13 +27,16 @@ test("average throws on empty array", () => {
 
 // roundTo
 test("roundTo rounds to specified decimal places", () => {
+  // biome-ignore lint/suspicious/noApproximativeNumericConstant: intentional test value, not Math.PI
   expect(roundTo(3.14159, 2)).toBe(3.14);
+  // biome-ignore lint/suspicious/noApproximativeNumericConstant: intentional test value, not Math.PI
   expect(roundTo(3.14159, 4)).toBe(3.1416);
+  // biome-ignore lint/suspicious/noApproximativeNumericConstant: intentional test value, not Math.PI
   expect(roundTo(3.14159, 0)).toBe(3);
 });
 
 test("roundTo handles negative numbers", () => {
-  expect(roundTo(-2.555, 2)).toBe(-2.55);
+  expect(roundTo(-2.555, 2)).toBe(-2.56);
 });
 
 test("roundTo handles zero decimals", () => {
