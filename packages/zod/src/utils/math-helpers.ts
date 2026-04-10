@@ -11,9 +11,6 @@ export function clamp(value: number, min: number, max: number): number {
 
 /**
  * Calculates the average of an array of numbers.
- *
- * BUG: Does not handle empty arrays — will return NaN (0 / 0)
- * instead of throwing an error or returning 0.
  */
 export function average(numbers: number[]): number {
   const sum = numbers.reduce((acc, n) => acc + n, 0);

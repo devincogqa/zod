@@ -27,9 +27,6 @@ export function camelToSnake(str: string): string {
 
 /**
  * Checks if a string is a valid email address.
- *
- * BUG: This regex is intentionally too permissive — it doesn't require
- * a dot in the domain part, so "user@localhost" would pass.
  */
 export function isValidEmail(value: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+$/;

@@ -4,9 +4,6 @@
 
 /**
  * Splits an array into chunks of the given size.
- *
- * BUG: Off-by-one error — uses `< size` instead of `<= size` when slicing,
- * which causes the last element of each chunk to be dropped.
  */
 export function chunk<T>(arr: T[], size: number): T[][] {
   if (size <= 0) throw new Error("Chunk size must be greater than 0");
