@@ -511,12 +511,16 @@ export function normalizeParams<T>(_params: T): Normalize<T> {
 
   if (!params) return {} as any;
   if (typeof params === "string") return { error: () => params } as any;
-  if (params?.message !== undefined) {
-    if (params?.error !== undefined) throw new Error("Cannot specify both `message` and `error` params");
-    params.error = params.message;
+
+  const { message, error, ...rest } = params;
+
+  if (message !== undefined) {
+    if (error !== undefined) throw new Error("Cannot specify both `message` and `error` params");
+    const errorValue = message;
+    return { ...rest, error: typeof errorValue === "string" ? () => errorValue : errorValue } as any;
   }
-  delete params.message;
-  if (typeof params.error === "string") return { ...params, error: () => params.error } as any;
+
+  if (typeof error === "string") return { ...rest, error: () => error } as any;
   return params;
 }
 
