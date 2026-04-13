@@ -3,14 +3,12 @@
  */
 
 /**
- * Removes duplicate values from an array.
- * BUG: Uses strict equality but the comparison is inverted - 
- * this will keep duplicates instead of removing them.
+ * Removes duplicate values from an array, preserving the first occurrence of each element.
  */
 export function removeDuplicates<T>(arr: T[]): T[] {
   const result: T[] = [];
   for (const item of arr) {
-    if (result.indexOf(item) !== -1) {
+    if (result.indexOf(item) === -1) {
       result.push(item);
     }
   }
