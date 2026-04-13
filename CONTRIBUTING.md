@@ -1,7 +1,7 @@
 # Contributing
 
 When it comes to open source, there are different ways you can contribute, all
-of which are valuable. Here's few guidelines that should help you as you prepare
+of which are valuable. Here are a few guidelines that should help you as you prepare
 your contribution.
 
 ## Initial steps
