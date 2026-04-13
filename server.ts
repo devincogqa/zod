@@ -7,6 +7,8 @@ app.get("/hello", (_req, res) => {
   res.json({ message: "Hello, World!" });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port);
+}
+
+export { app };

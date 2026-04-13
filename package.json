@@ -20,6 +20,7 @@
     "@seriousme/openapi-schema-validator": "2.5.0",
     "@types/benchmark": "^2.1.5",
     "@types/express": "^5.0.6",
+    "express": "^5.2.1",
     "@types/semver": "^7.7.0",
     "@web-std/file": "^3.0.3",
     "arktype": "^2.1.19",
@@ -87,8 +88,5 @@
     "bundle:esbuild": "esbuild --bundle ./scratch/input.ts --outfile=./scratch/out_esbuild.js --bundle --format=esm",
     "check:semver": "tsx scripts/check-versions.ts",
     "check:circular": "madge --circular --extensions ts --exclude '(v4/core|v3|iso\\.ts)' packages/zod/src"
-  },
-  "dependencies": {
-    "express": "^5.2.1"
   }
 }
