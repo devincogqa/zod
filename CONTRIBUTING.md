@@ -6,7 +6,7 @@ your contribution.
 
 ## Initial steps
 
-Before you start working on a contribution, create an issue describing what you want to build. It's possible someone else is already working on something similar, or perhaps there is a reason that feature isn't implemented. The maintainers will point you in the right direction.
+Before you start working on a contribution, create an issue describing what you want to build. It is possible that someone else is already working on something similar, or perhaps there is a reason that feature has not been implemented. The maintainers will point you in the right direction.
 
 <!-- ## Submitting a Pull Request
 
