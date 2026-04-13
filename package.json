@@ -16,10 +16,10 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.4",
-    "madge": "^8.0.0",
     "@biomejs/biome": "^1.9.4",
     "@seriousme/openapi-schema-validator": "2.5.0",
     "@types/benchmark": "^2.1.5",
+    "@types/express": "^5.0.6",
     "@types/semver": "^7.7.0",
     "@web-std/file": "^3.0.3",
     "arktype": "^2.1.19",
@@ -32,6 +32,7 @@
     "husky": "^9.1.7",
     "jsr": "^0.12.4",
     "lint-staged": "^16.1.0",
+    "madge": "^8.0.0",
     "mitata": "^0.1.14",
     "prettier": "^3.5.3",
     "recheck": "^4.5.0",
@@ -86,5 +87,8 @@
     "bundle:esbuild": "esbuild --bundle ./scratch/input.ts --outfile=./scratch/out_esbuild.js --bundle --format=esm",
     "check:semver": "tsx scripts/check-versions.ts",
     "check:circular": "madge --circular --extensions ts --exclude '(v4/core|v3|iso\\.ts)' packages/zod/src"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
   }
 }
