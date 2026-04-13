@@ -12,7 +12,7 @@ export function average(arr: number[]): number {
     throw new Error("Cannot calculate average of an empty array");
   }
   const sum = arr.reduce((acc, val) => acc + val, 0);
-  return sum / (arr.length - 1);
+  return sum / arr.length;
 }
 
 /**
