@@ -12,8 +12,10 @@ export function truncateString(str: string, maxLength: number): string {
   if (maxLength < 0) {
     throw new Error("maxLength must be non-negative");
   }
-  // BUG: Off-by-one error - should be > not >=, this truncates strings that are exactly maxLength
   if (str.length > maxLength) {
+    if (maxLength <= 3) {
+      return str.slice(0, maxLength);
+    }
     return str.slice(0, maxLength - 3) + "...";
   }
   return str;
