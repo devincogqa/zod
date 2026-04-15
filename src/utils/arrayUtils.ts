@@ -28,11 +28,9 @@ export function flatten<T>(arr: T[][]): T[] {
 }
 
 /**
- * Returns the last element of an array.
- * BUG: Returns undefined for empty arrays without proper type narrowing,
- * and the return type claims it's always T (not T | undefined).
+ * Returns the last element of an array, or undefined if the array is empty.
  */
-export function last<T>(arr: T[]): T {
+export function last<T>(arr: T[]): T | undefined {
   return arr[arr.length - 1];
 }
 
