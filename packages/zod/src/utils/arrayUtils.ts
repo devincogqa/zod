@@ -11,8 +11,12 @@ export function unique<T>(arr: T[]): T[] {
 
 /**
  * Chunk an array into smaller arrays of the given size.
+ * @throws {Error} If size is less than 1.
  */
 export function chunk<T>(arr: T[], size: number): T[][] {
+  if (size < 1) {
+    throw new Error("chunk size must be at least 1");
+  }
   const result: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
     result.push(arr.slice(i, i + size));
