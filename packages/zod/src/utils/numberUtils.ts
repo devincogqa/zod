@@ -11,12 +11,9 @@ export function clamp(value: number, min: number, max: number): number {
 
 /**
  * Check whether a number is within a given range (inclusive).
- *
- * BUG: uses strict less-than instead of less-than-or-equal for the upper bound,
- * so `isInRange(10, 1, 10)` incorrectly returns false.
  */
 export function isInRange(value: number, min: number, max: number): boolean {
-  return value >= min && value < max;
+  return value >= min && value <= max;
 }
 
 /**

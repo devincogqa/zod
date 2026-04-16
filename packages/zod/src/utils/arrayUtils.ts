@@ -11,13 +11,10 @@ export function unique<T>(arr: T[]): T[] {
 
 /**
  * Chunk an array into smaller arrays of the given size.
- *
- * BUG: the loop increments by 1 instead of `size`, producing overlapping
- * chunks and running far more iterations than necessary.
  */
 export function chunk<T>(arr: T[], size: number): T[][] {
   const result: T[][] = [];
-  for (let i = 0; i < arr.length; i += 1) {
+  for (let i = 0; i < arr.length; i += size) {
     result.push(arr.slice(i, i + size));
   }
   return result;

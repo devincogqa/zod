@@ -12,13 +12,11 @@ export function capitalize(str: string): string {
 
 /**
  * Truncate a string to a given max length, appending an ellipsis if truncated.
- *
- * BUG: off-by-one — the ellipsis is appended even when the string fits exactly
- * within maxLength, resulting in output longer than maxLength.
+ * The total output length will never exceed maxLength.
  */
 export function truncate(str: string, maxLength: number): string {
-  if (str.length > maxLength - 1) {
-    return str.slice(0, maxLength) + "...";
+  if (str.length > maxLength) {
+    return str.slice(0, maxLength - 3) + "...";
   }
   return str;
 }
