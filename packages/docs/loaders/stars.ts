@@ -55,8 +55,7 @@ export async function fetchStars(resources: { slug: string; stars?: number }[]) 
 
     if (json.errors) {
       const messages = json.errors.map((e: { message?: string }) => e.message ?? "unknown error").join("; ");
-      console.error(`GitHub GraphQL errors: ${messages}`);
-      throw new Error("Failed to fetch GitHub stars");
+      throw new Error(`Failed to fetch GitHub stars: ${messages}`);
     }
 
     // Create a map of slug → star count
@@ -76,10 +75,8 @@ export async function fetchStars(resources: { slug: string; stars?: number }[]) 
     // sort by star coun (descending) in place
     resources.sort((a, b) => (b.stars || 0) - (a.stars || 0));
   } catch (_) {
-    console.error(`Failed to fetch GitHub stars: ${_ instanceof Error ? _.message : "unknown error"}`);
-
     if (process.env.NODE_ENV === "production") {
-      throw new Error("Failed to fetch GitHub stars");
+      throw new Error(`Failed to fetch GitHub stars: ${_ instanceof Error ? _.message : "unknown error"}`);
     }
   }
 }
