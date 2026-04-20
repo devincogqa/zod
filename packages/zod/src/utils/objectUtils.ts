@@ -1,19 +1,9 @@
 /**
- * Object utility helpers for Zod schema processing.
+ * Object utility helpers for working with validated data structures.
  */
 
 /**
- * Shallow-merge two objects, with `overrides` taking precedence.
- */
-export function merge<A extends Record<string, unknown>, B extends Record<string, unknown>>(
-  base: A,
-  overrides: B
-): A & B {
-  return { ...base, ...overrides };
-}
-
-/**
- * Pick specified keys from an object.
+ * Picks specified keys from an object.
  */
 export function pick<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
   const result = {} as Pick<T, K>;
@@ -26,7 +16,7 @@ export function pick<T extends Record<string, unknown>, K extends keyof T>(obj: 
 }
 
 /**
- * Omit specified keys from an object.
+ * Omits specified keys from an object.
  */
 export function omit<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
   const result = { ...obj };
@@ -37,9 +27,32 @@ export function omit<T extends Record<string, unknown>, K extends keyof T>(obj: 
 }
 
 /**
- * Deep-clone a plain object using JSON serialization.
- * NOTE: This does not handle Date, RegExp, functions, undefined, etc.
+ * Deep merges two objects. Arrays are replaced, not concatenated.
  */
-export function deepClone<T>(obj: T): T {
-  return JSON.parse(JSON.stringify(obj));
+export function deepMerge<T extends Record<string, unknown>>(target: T, source: Partial<T>): T {
+  const result = { ...target };
+  for (const key of Object.keys(source) as Array<keyof T>) {
+    const sourceVal = source[key];
+    const targetVal = result[key];
+    if (
+      typeof sourceVal === "object" &&
+      sourceVal !== null &&
+      !Array.isArray(sourceVal) &&
+      typeof targetVal === "object" &&
+      targetVal !== null &&
+      !Array.isArray(targetVal)
+    ) {
+      result[key] = deepMerge(targetVal as Record<string, unknown>, sourceVal as Record<string, unknown>) as T[keyof T];
+    } else {
+      result[key] = sourceVal as T[keyof T];
+    }
+  }
+  return result;
+}
+
+/**
+ * Returns true if the given value is a plain object (not an array or null).
+ */
+export function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }

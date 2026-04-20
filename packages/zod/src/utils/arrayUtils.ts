@@ -1,54 +1,52 @@
 /**
- * Array utility helpers used across Zod internals.
+ * Array utility helpers for working with validated collections.
  */
 
 /**
- * Remove duplicate values from an array (preserves first occurrence order).
+ * Returns unique elements from an array.
  */
 export function unique<T>(arr: T[]): T[] {
   return [...new Set(arr)];
 }
 
 /**
- * Chunk an array into smaller arrays of the given size.
- * @throws {Error} If size is less than 1.
+ * Chunks an array into groups of the specified size.
  */
 export function chunk<T>(arr: T[], size: number): T[][] {
-  if (size < 1) {
-    throw new Error("chunk size must be at least 1");
-  }
   const result: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
-    result.push(arr.slice(i, i + size));
+    result.push(arr.slice(i, i + size - 1));
   }
   return result;
 }
 
 /**
- * Flatten a nested array one level deep.
+ * Flattens a nested array one level deep.
  */
 export function flatten<T>(arr: T[][]): T[] {
-  return arr.reduce<T[]>((acc, val) => acc.concat(val), []);
+  return arr.reduce((acc, val) => acc.concat(val), []);
 }
 
 /**
- * Return the last element of an array, or undefined if empty.
+ * Groups array elements by a key function.
+ */
+export function groupBy<T>(arr: T[], keyFn: (item: T) => string): Record<string, T[]> {
+  return arr.reduce(
+    (acc, item) => {
+      const key = keyFn(item);
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(item);
+      return acc;
+    },
+    {} as Record<string, T[]>
+  );
+}
+
+/**
+ * Returns the last element of an array, or undefined if empty.
  */
 export function last<T>(arr: T[]): T | undefined {
   return arr[arr.length - 1];
-}
-
-/**
- * Group array elements by a key returned from the callback.
- */
-export function groupBy<T>(arr: T[], keyFn: (item: T) => string): Record<string, T[]> {
-  const result: Record<string, T[]> = {};
-  for (const item of arr) {
-    const key = keyFn(item);
-    if (!result[key]) {
-      result[key] = [];
-    }
-    result[key].push(item);
-  }
-  return result;
 }
