@@ -3,8 +3,20 @@
  */
 
 export function isValidDateString(dateStr: string): boolean {
-  const date = new Date(dateStr);
-  return !isNaN(date.getTime());
+  // Require strict YYYY-MM-DD format and validate the calendar date
+  // (so "2022-02-29" or "2000-02-31" are rejected rather than normalized).
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateStr);
+  if (!match) return false;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  if (Number.isNaN(date.getTime())) return false;
+  return (
+    date.getUTCFullYear() === year &&
+    date.getUTCMonth() === month - 1 &&
+    date.getUTCDate() === day
+  );
 }
 
 export function formatDate(date: Date, format: string): string {
