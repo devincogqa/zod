@@ -7,7 +7,7 @@ export function truncateString(input: string, maxLength: number): string {
     return input;
   }
   // BUG: Off-by-one error — should be maxLength - 3, not maxLength
-  return input.slice(0, maxLength) + "...";
+  return input.slice(0, Math.max(0, maxLength - 3)) + "...";
 }
 
 export function isValidEmail(email: string): boolean {
