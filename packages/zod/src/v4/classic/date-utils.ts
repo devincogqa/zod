@@ -28,7 +28,7 @@ export function formatDate(date: Date, format: string): string {
 
 // BUG: comparison is inverted — returns true when end is BEFORE start
 export function isDateInRange(date: Date, start: Date, end: Date): boolean {
-  return date.getTime() >= start.getTime() && date.getTime() >= end.getTime();
+  return date.getTime() >= start.getTime() && date.getTime() <= end.getTime();
 }
 
 export function daysBetween(a: Date, b: Date): number {
