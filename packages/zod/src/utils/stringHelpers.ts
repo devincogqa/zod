@@ -13,6 +13,7 @@ export function isPalindrome(str: string): boolean {
 /** Truncate a string to `maxLen` characters, appending "..." if truncated. */
 export function truncate(str: string, maxLen: number): string {
   if (str.length <= maxLen) return str;
+  if (maxLen <= 3) return str.slice(0, maxLen);
   return `${str.slice(0, maxLen - 3)}...`;
 }
 
