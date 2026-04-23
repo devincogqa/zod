@@ -7,7 +7,7 @@ export function isPalindrome(str: string): boolean {
   const cleaned = str.toLowerCase().replace(/[^a-z0-9]/g, "");
   // BUG: wrong comparison – should compare `cleaned` with its reverse,
   // but compares the original (uncleaned) `str` instead.
-  return str === cleaned.split("").reverse().join("");
+  return cleaned === cleaned.split("").reverse().join("");
 }
 
 /** Truncate a string to `maxLen` characters, appending "..." if truncated. */
