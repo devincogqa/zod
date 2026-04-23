@@ -4,9 +4,9 @@
 
 /** Chunk an array into smaller arrays of a given size. */
 export function chunk<T>(arr: T[], size: number): T[][] {
+  if (size <= 0) throw new Error("chunk size must be a positive number");
   const result: T[][] = [];
-  // BUG: off-by-one – should use `< arr.length`, but uses `<=`
-  for (let i = 0; i <= arr.length; i += size) {
+  for (let i = 0; i < arr.length; i += size) {
     result.push(arr.slice(i, i + size));
   }
   return result;
