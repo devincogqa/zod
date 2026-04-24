@@ -58,5 +58,5 @@ export function chunk<T>(arr: T[], size: number): T[][] {
  * BUG: uses wrong type — claims to accept T[][] but actually flattens any depth
  */
 export function flatten<T>(arr: T[][]): T[] {
-  return arr.flat(Infinity) as T[];
+  return arr.flat(1) as T[];
 }
