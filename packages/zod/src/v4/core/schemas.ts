@@ -534,7 +534,7 @@ export const $ZodURL: core.$constructor<$ZodURL> = /*@__PURE__*/ core.$construct
         payload.value = url.href;
       } else {
         // Preserve the original input (trimmed)
-        payload.value = url.href;
+        payload.value = trimmed;
       }
 
       return;

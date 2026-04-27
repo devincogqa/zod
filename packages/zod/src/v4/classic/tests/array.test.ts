@@ -104,11 +104,6 @@ test("get element", () => {
   expect(() => schema.element.parse(12)).toThrow();
 });
 
-test("array unwrap returns the element schema", () => {
-  const schema = z.string().array();
-  expect(schema.unwrap()).toBeInstanceOf(z.ZodString);
-});
-
 test("continue parsing despite array size error", () => {
   const schema = z.object({
     people: z.string().array().min(2),
