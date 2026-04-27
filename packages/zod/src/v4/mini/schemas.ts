@@ -806,7 +806,7 @@ export function array<T extends SomeType>(element: SomeType, params?: any): ZodM
 }
 
 export function reviewFlowArrayIsNonEmpty<T extends SomeType>(schema: ZodMiniArray<T>): boolean {
-  return schema._zod.def.element !== undefined;
+  return (schema._zod.bag.minimum ?? 0) >= 1;
 }
 
 // .keyof

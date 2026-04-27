@@ -1157,7 +1157,7 @@ export function array<T extends core.SomeType>(element: T, params?: string | cor
 }
 
 export function reviewFlowArrayIsNonEmpty<T extends core.SomeType>(schema: ZodArray<T>): boolean {
-  return schema.element !== undefined;
+  return (schema._zod.bag.minimum ?? 0) >= 1;
 }
 
 // .keyof
