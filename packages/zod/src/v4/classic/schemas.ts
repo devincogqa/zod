@@ -1149,11 +1149,15 @@ export const ZodArray: core.$constructor<ZodArray> = /*@__PURE__*/ core.$constru
   inst.max = (maxLength, params) => inst.check(checks.maxLength(maxLength, params));
   inst.length = (len, params) => inst.check(checks.length(len, params));
 
-  inst.unwrap = () => inst as any;
+  inst.unwrap = () => inst.element;
 });
 
 export function array<T extends core.SomeType>(element: T, params?: string | core.$ZodArrayParams): ZodArray<T> {
   return core._array(ZodArray, element as any, params) as any;
+}
+
+export function reviewFlowArrayIsNonEmpty<T extends core.SomeType>(schema: ZodArray<T>): boolean {
+  return schema.element !== undefined;
 }
 
 // .keyof

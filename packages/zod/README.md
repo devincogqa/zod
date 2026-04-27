@@ -73,7 +73,7 @@ const input = {
 const data = User.parse(input);
 
 // so you can use it with confidence :)
-console.log(data.name);
+console.log(data.email);
 ```
 
 <br/>
