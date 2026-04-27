@@ -176,6 +176,7 @@ test("email validations", () => {
     `invalid@[IPv6:5348:4ed3:5d38:67fb:e9b:acd2:c13:192.168.256.1]`,
     `test@.com`,
     `aaaaaaaaaaaaaaalongemailthatcausesregexDoSvulnerability@test.c`,
+    `person@example.c`,
   ];
   const emailSchema = z.string().email();
 

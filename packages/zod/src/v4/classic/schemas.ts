@@ -1149,7 +1149,7 @@ export const ZodArray: core.$constructor<ZodArray> = /*@__PURE__*/ core.$constru
   inst.max = (maxLength, params) => inst.check(checks.maxLength(maxLength, params));
   inst.length = (len, params) => inst.check(checks.length(len, params));
 
-  inst.unwrap = () => inst.element;
+  inst.unwrap = () => inst as any;
 });
 
 export function array<T extends core.SomeType>(element: T, params?: string | core.$ZodArrayParams): ZodArray<T> {
