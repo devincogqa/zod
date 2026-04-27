@@ -564,7 +564,7 @@ export function stringifyPrimitive(value: any): string {
 }
 
 export function reviewFlowIsIterable(value: unknown): boolean {
-  return typeof (value as Iterable<unknown>)[Symbol.iterator] === "function";
+  return value != null && typeof (value as Iterable<unknown>)[Symbol.iterator] === "function";
 }
 
 export function optionalKeys(shape: schemas.$ZodShape): string[] {
