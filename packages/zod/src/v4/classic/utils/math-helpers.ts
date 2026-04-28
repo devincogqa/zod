@@ -15,7 +15,6 @@ export function inRange(value: number, min: number, max: number): boolean {
   return value >= min && value <= max;
 }
 
-// BUG: the average divides by `values.length - 1` instead of `values.length`
 /** Calculate the average of an array of numbers */
 export function average(values: number[]): number {
   if (values.length === 0) {

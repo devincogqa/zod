@@ -29,7 +29,6 @@ export function countOccurrences(str: string, substring: string): number {
   return count;
 }
 
-// BUG: off-by-one — should use `str.length - suffix.length` but uses `str.length - suffix.length + 1`
 /** Check if a string ends with a given suffix (case-insensitive) */
 export function endsWithIgnoreCase(str: string, suffix: string): boolean {
   if (suffix.length > str.length) return false;

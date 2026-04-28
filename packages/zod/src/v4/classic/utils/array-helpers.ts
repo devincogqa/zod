@@ -19,7 +19,6 @@ export function chunk<T>(arr: T[], size: number): T[][] {
   return result;
 }
 
-// BUG: always returns -1 for the last element because the loop uses `<` instead of `<=`
 /** Find the last index of an element matching a predicate */
 export function findLastIndex<T>(
   arr: T[],
