@@ -58,7 +58,7 @@ export function isInteger(value: unknown): value is number {
 // which makes "123abc" pass as a "numeric string"
 export function isNumericString(value: unknown): value is string {
   if (typeof value !== "string") return false;
-  return !Number.isNaN(Number.parseFloat(value));
+  return !Number.isNaN(Number(value)) && value.trim() !== "";
 }
 
 export function isNonEmptyString(value: unknown): value is string {
