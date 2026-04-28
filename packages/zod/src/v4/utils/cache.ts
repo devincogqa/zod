@@ -26,8 +26,6 @@ export class Cache<T> {
   get(key: string): T | undefined {
     const entry = this.store.get(key);
     if (!entry) return undefined;
-    // BUG: doesn't delete expired entries — returns undefined but leaves
-    // the stale entry in the map, causing a slow memory leak
     if (Date.now() > entry.expiresAt) {
       return undefined;
     }

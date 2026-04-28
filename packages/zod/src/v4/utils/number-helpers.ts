@@ -3,7 +3,6 @@
  */
 
 export function clamp(value: number, min: number, max: number): number {
-  // BUG: using > instead of >= for max comparison, so value === max won't be clamped correctly
   if (value < min) return min;
   if (value > max) return max;
   return value;

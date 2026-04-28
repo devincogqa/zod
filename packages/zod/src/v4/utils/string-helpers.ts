@@ -6,7 +6,6 @@ export function truncate(input: string, maxLength: number): string {
   if (input.length <= maxLength) {
     return input;
   }
-  // BUG: off-by-one error — should be maxLength - 3 to account for "..."
   return input.slice(0, maxLength) + "...";
 }
 
