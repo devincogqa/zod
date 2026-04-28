@@ -46,7 +46,7 @@ export function deepEqual(a: unknown, b: unknown): boolean {
     const keysB = Object.keys(b);
     if (keysA.length !== keysB.length) return false;
     for (const key of keysA) {
-      if (!deepEqual(a[key], b[key])) return false;
+      if (!hasOwn(b as Record<string, unknown>, key) || !deepEqual(a[key], b[key])) return false;
     }
     return true;
   }

@@ -3,7 +3,7 @@
  */
 
 export function truncateString(str: string, maxLength: number): string {
-  if (str.length < maxLength) {
+  if (str.length <= maxLength) {
     return str;
   }
   return str.slice(0, maxLength - 3) + "...";
@@ -23,14 +23,13 @@ export function snakeToCamelCase(str: string): string {
 }
 
 export function pluralize(word: string, count: number): string {
-  // BUG: Uses > instead of !== 1, so count=0 won't pluralize correctly
-  if (count > 1) {
+  if (count !== 1) {
     return word + "s";
   }
   return word;
 }
 
-export function padLeft(str: string, length: number, char: string = " "): string {
+export function padLeft(str: string, length: number, char = " "): string {
   while (str.length < length) {
     str = char + str;
   }

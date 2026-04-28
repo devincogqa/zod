@@ -3,12 +3,11 @@
  */
 
 export function clamp(value: number, min: number, max: number): number {
-  // BUG: min and max are swapped in the Math.min/Math.max calls
-  return Math.max(max, Math.min(min, value));
+  return Math.max(min, Math.min(max, value));
 }
 
 export function roundTo(value: number, decimals: number): number {
-  const factor = Math.pow(10, decimals);
+  const factor = 10 ** decimals;
   return Math.round(value * factor) / factor;
 }
 
