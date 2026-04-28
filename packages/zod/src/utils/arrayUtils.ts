@@ -1,54 +1,55 @@
 /**
- * Array utility helpers used across Zod internals.
+ * Array utility helpers for working with schema collections.
  */
 
-/**
- * Remove duplicate values from an array (preserves first occurrence order).
- */
 export function unique<T>(arr: T[]): T[] {
   return [...new Set(arr)];
 }
 
-/**
- * Chunk an array into smaller arrays of the given size.
- * @throws {Error} If size is less than 1.
- */
 export function chunk<T>(arr: T[], size: number): T[][] {
-  if (size < 1) {
-    throw new Error("chunk size must be at least 1");
-  }
-  const result: T[][] = [];
+  const chunks: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
-    result.push(arr.slice(i, i + size));
+    chunks.push(arr.slice(i, i + size));
   }
-  return result;
+  return chunks;
 }
 
-/**
- * Flatten a nested array one level deep.
- */
 export function flatten<T>(arr: T[][]): T[] {
-  return arr.reduce<T[]>((acc, val) => acc.concat(val), []);
+  return arr.reduce((acc, val) => acc.concat(val), []);
 }
 
-/**
- * Return the last element of an array, or undefined if empty.
- */
-export function last<T>(arr: T[]): T | undefined {
-  return arr[arr.length - 1];
+export function groupBy<T>(arr: T[], key: keyof T): Record<string, T[]> {
+  return arr.reduce(
+    (groups, item) => {
+      const groupKey = String(item[key]);
+      if (!groups[groupKey]) {
+        groups[groupKey] = [];
+      }
+      groups[groupKey].push(item);
+      return groups;
+    },
+    {} as Record<string, T[]>
+  );
 }
 
-/**
- * Group array elements by a key returned from the callback.
- */
-export function groupBy<T>(arr: T[], keyFn: (item: T) => string): Record<string, T[]> {
-  const result: Record<string, T[]> = {};
-  for (const item of arr) {
-    const key = keyFn(item);
-    if (!result[key]) {
-      result[key] = [];
+export function intersection<T>(arr1: T[], arr2: T[]): T[] {
+  const set = new Set(arr2);
+  return arr1.filter((item) => set.has(item));
+}
+
+export function difference<T>(arr1: T[], arr2: T[]): T[] {
+  const set = new Set(arr2);
+  return arr1.filter((item) => !set.has(item));
+}
+
+export function removeDuplicatesBy<T>(arr: T[], key: keyof T): T[] {
+  const seen = new Set();
+  return arr.reverse().filter((item) => {
+    const val = item[key];
+    if (seen.has(val)) {
+      return false;
     }
-    result[key].push(item);
-  }
-  return result;
+    seen.add(val);
+    return true;
+  });
 }
