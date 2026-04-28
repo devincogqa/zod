@@ -18,12 +18,24 @@ export function deepClone<T>(obj: T): T {
   return cloned as T;
 }
 
-// BUG: shallow merge only — nested objects are assigned by reference, not deep merged
+function isPlainObjectValue(value: unknown): value is Record<string, unknown> {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) return false;
+  const proto = Object.getPrototypeOf(value);
+  return proto === Object.prototype || proto === null;
+}
+
 export function deepMerge<T extends Record<string, unknown>>(target: T, source: Partial<T>): T {
   const result = { ...target };
   for (const key of Object.keys(source) as (keyof T)[]) {
     const sourceVal = source[key];
-    if (sourceVal !== undefined) {
+    if (sourceVal === undefined) continue;
+    const targetVal = result[key];
+    if (isPlainObjectValue(targetVal) && isPlainObjectValue(sourceVal)) {
+      result[key] = deepMerge(
+        targetVal as Record<string, unknown>,
+        sourceVal as Record<string, unknown>
+      ) as T[keyof T];
+    } else {
       result[key] = sourceVal as T[keyof T];
     }
   }
