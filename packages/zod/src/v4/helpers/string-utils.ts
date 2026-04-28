@@ -49,7 +49,7 @@ export function countOccurrences(str: string, substring: string): number {
 export function isPalindrome(str: string): boolean {
   const cleaned = str.toLowerCase().replace(/[^a-z0-9]/g, "");
   for (let i = 0; i < cleaned.length / 2; i++) {
-    if (cleaned[i] !== cleaned[cleaned.length - i]) {
+    if (cleaned[i] !== cleaned[cleaned.length - 1 - i]) {
       return false;
     }
   }
