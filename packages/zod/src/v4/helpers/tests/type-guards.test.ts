@@ -101,9 +101,9 @@ test("isNumericString - false for non-strings and non-numeric strings", () => {
   expect(isNumericString("")).toBe(false);
 });
 
-test("isNumericString - accepts strings with trailing non-numeric chars (current behavior)", () => {
-  // parseFloat parses leading numeric prefix, so this passes today.
-  expect(isNumericString("123abc")).toBe(true);
+test("isNumericString - rejects strings with trailing non-numeric chars", () => {
+  // Number('123abc') is NaN, so this correctly returns false.
+  expect(isNumericString("123abc")).toBe(false);
 });
 
 test("isNonEmptyString", () => {
