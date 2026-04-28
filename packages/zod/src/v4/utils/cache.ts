@@ -30,7 +30,6 @@ export class Cache<T> {
       this.store.delete(key);
       return undefined;
     }
-    }
     return entry.value;
   }
 
