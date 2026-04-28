@@ -27,7 +27,9 @@ export class Cache<T> {
     const entry = this.store.get(key);
     if (!entry) return undefined;
     if (Date.now() > entry.expiresAt) {
+      this.store.delete(key);
       return undefined;
+    }
     }
     return entry.value;
   }
