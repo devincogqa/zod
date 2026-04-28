@@ -26,6 +26,12 @@ describe("truncateString", () => {
   test("handles empty string", () => {
     expect(truncateString("", 5)).toBe("");
   });
+
+  test("handles maxLength less than 3", () => {
+    expect(truncateString("hello", 2)).toBe("..");
+    expect(truncateString("hello", 1)).toBe(".");
+    expect(truncateString("hello", 3)).toBe("...");
+  });
 });
 
 describe("capitalizeFirst", () => {
@@ -99,6 +105,10 @@ describe("padLeft", () => {
 
   test("uses space as default pad character", () => {
     expect(padLeft("hi", 4)).toBe("  hi");
+  });
+
+  test("throws when pad character is empty string", () => {
+    expect(() => padLeft("hi", 10, "")).toThrow();
   });
 });
 

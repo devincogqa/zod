@@ -6,6 +6,9 @@ export function truncateString(str: string, maxLength: number): string {
   if (str.length <= maxLength) {
     return str;
   }
+  if (maxLength <= 3) {
+    return "...".slice(0, maxLength);
+  }
   return str.slice(0, maxLength - 3) + "...";
 }
 
@@ -30,6 +33,7 @@ export function pluralize(word: string, count: number): string {
 }
 
 export function padLeft(str: string, length: number, char = " "): string {
+  if (char.length === 0) throw new Error("pad character must not be empty");
   while (str.length < length) {
     str = char + str;
   }

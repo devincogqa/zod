@@ -35,6 +35,14 @@ describe("chunk", () => {
   test("returns empty array for empty input", () => {
     expect(chunk([], 3)).toEqual([]);
   });
+
+  test("throws when size is zero", () => {
+    expect(() => chunk([1, 2], 0)).toThrow();
+  });
+
+  test("throws when size is negative", () => {
+    expect(() => chunk([1, 2], -1)).toThrow();
+  });
 });
 
 describe("flatten", () => {
