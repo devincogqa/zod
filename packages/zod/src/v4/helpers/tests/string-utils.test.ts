@@ -17,10 +17,8 @@ test("truncate - truncates and appends ellipsis when longer than maxLength", () 
   expect(truncate("hello world", 8)).toBe("hello...");
 });
 
-test("truncate - truncates strings exactly equal to maxLength (current behavior)", () => {
-  // Note: known boundary quirk — a string of exactly `maxLength` is still truncated
-  // because the implementation uses `<` rather than `<=`.
-  expect(truncate("abcde", 5)).toBe("ab...");
+test("truncate - returns original when exactly equal to maxLength", () => {
+  expect(truncate("abcde", 5)).toBe("abcde");
 });
 
 test("capitalize - empty string returns empty string", () => {
