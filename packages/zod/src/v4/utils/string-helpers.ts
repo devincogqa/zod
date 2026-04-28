@@ -6,7 +6,7 @@ export function truncate(input: string, maxLength: number): string {
   if (input.length <= maxLength) {
     return input;
   }
-  return input.slice(0, maxLength) + "...";
+  return input.slice(0, Math.max(0, maxLength - 3)) + "...";
 }
 
 export function capitalize(input: string): string {
