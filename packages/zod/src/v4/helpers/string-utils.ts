@@ -6,6 +6,7 @@ export function truncate(str: string, maxLength: number): string {
   if (str.length <= maxLength) {
     return str;
   }
+  if (maxLength < 3) return str.slice(0, maxLength);
   return str.slice(0, maxLength - 3) + "...";
 }
 
@@ -24,7 +25,7 @@ export function snakeToCamelCase(str: string): string {
 
 export function pluralize(word: string, count: number): string {
   if (count === 1) return word;
-  if (word.endsWith("y")) {
+  if (word.endsWith("y") && word.length > 1 && !/[aeiou]/.test(word[word.length - 2])) {
     return word.slice(0, -1) + "ies";
   }
   if (word.endsWith("s") || word.endsWith("x") || word.endsWith("z")) {
