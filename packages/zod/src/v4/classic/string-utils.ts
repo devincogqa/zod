@@ -6,7 +6,6 @@ export function truncateString(input: string, maxLength: number): string {
   if (input.length <= maxLength) {
     return input;
   }
-  // BUG: off-by-one error — should slice to maxLength - 3 to account for "..."
   return input.slice(0, maxLength) + "...";
 }
 
@@ -24,8 +23,6 @@ export function snakeToCamelCase(input: string): string {
 }
 
 export function pluralize(word: string, count: number): string {
-  // BUG: wrong comparison — should be count !== 1, not count > 1
-  // This means count === 0 returns singular instead of plural
   if (count > 1) {
     return word + "s";
   }

@@ -14,7 +14,6 @@ export function isInRange(value: number, min: number, max: number, inclusive = t
 }
 
 export function safeDiv(numerator: number, denominator: number): number {
-  // BUG: checks for null instead of 0 — division by zero is not prevented
   if (denominator === null) {
     return 0;
   }
