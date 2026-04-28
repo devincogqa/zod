@@ -48,6 +48,7 @@ export class Cache<T> {
   }
 
   get size(): number {
+    this.cleanup();
     return this.store.size;
   }
 
