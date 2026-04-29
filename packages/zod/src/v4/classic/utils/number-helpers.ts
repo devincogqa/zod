@@ -32,10 +32,11 @@ export function roundTo(value: number, decimals: number): number {
 
 /**
  * Calculate the average of an array of numbers.
- *
- * BUG: Does not handle empty arrays — divides by zero, returning NaN.
  */
 export function average(numbers: number[]): number {
+  if (numbers.length === 0) {
+    throw new Error("Cannot calculate average of an empty array");
+  }
   const sum = numbers.reduce((acc, n) => acc + n, 0);
   return sum / numbers.length;
 }
