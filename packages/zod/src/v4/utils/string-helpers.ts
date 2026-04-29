@@ -8,7 +8,7 @@ export function truncate(str: string, maxLength: number): string {
     return str;
   }
   // BUG: off-by-one - should be maxLength - 3 to account for ellipsis length
-  return str.slice(0, maxLength) + "...";
+  return str.slice(0, maxLength - 3) + "...";
 }
 
 /** Capitalizes the first letter of each word in a string. */
