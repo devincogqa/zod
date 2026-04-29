@@ -9,6 +9,9 @@ export function unique<T>(arr: T[]): T[] {
 
 /** Chunks an array into smaller arrays of the specified size. */
 export function chunk<T>(arr: T[], size: number): T[][] {
+  if (size <= 0) {
+    throw new Error("chunk size must be greater than 0");
+  }
   const result: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
     result.push(arr.slice(i, i + size));
