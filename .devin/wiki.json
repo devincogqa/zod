@@ -1,0 +1,301 @@
+{
+  "repo_notes": [
+    {
+      "content": ""
+    }
+  ],
+  "pages": [
+    {
+      "title": "Overview",
+      "purpose": "High-level introduction to Zod: what it is, its monorepo structure, key design principles (zero dependencies, immutable API, TypeScript-first), and how to navigate the wiki. Links to child pages for getting started and the v4 release.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Getting Startedd",
+      "purpose": "Installation, basic usage (defining schemas, parsing data, handling errors, type inference with z.infer), and the difference between Zod and Zod Mini. Covers the pnpm monorepo setup and development workflow.",
+      "parent": "Overview",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Zod v4 Migration and Changelog",
+      "purpose": "Documents what changed in Zod v4 vs v3, the versioning strategy (zod/v3 and zod/v4 subpaths), breaking changes, and the compatibility layer (compat.ts). Covers the incremental rollout approach.",
+      "parent": "Overview",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Core Architecture",
+      "purpose": "Overview of the internal architecture: the $ZodType base class, the $constructor pattern, the _zod internals property, and how the parsing pipeline flows. Links to child pages for schemas, checks, parsing, and utilities.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Schema Types",
+      "purpose": "Detailed reference for all built-in schema types: primitives ($ZodString, $ZodNumber, $ZodBoolean, $ZodBigInt, $ZodDate, $ZodSymbol), structural types ($ZodObject, $ZodArray, $ZodRecord, $ZodTuple, $ZodMap, $ZodSet), and logical types ($ZodUnion, $ZodDiscriminatedUnion, $ZodIntersection, $ZodEnum, $ZodLiteral). Covers the Classic vs Mini API differences.",
+      "parent": "Core Architecture",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "String Schemas and Formats",
+      "purpose": "Deep dive into $ZodString and its format sub-types: email, URL, UUID (v4/v6/v7), CUID, ULID, nanoid, IP addresses, base64, JWT, emoji, phone numbers (e164), and more. Covers the regexes module and string-specific checks (min/max length, trim, toLowerCase, etc.).",
+      "parent": "Core Architecture",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Object Schemas and Modifiers",
+      "purpose": "Covers ZodObject in depth: strip/strict/passthrough modes, catchall, .extend(), .merge(), .pick(), .omit(), .partial(), .required(), and the JIT optimization ($ZodObjectJIT). Explains refinement safety rules for structural modifications.",
+      "parent": "Core Architecture",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Checks and Refinements",
+      "purpose": "Explains the $ZodCheck system: built-in checks (LessThan, GreaterThan, MinLength, MaxLength, MultipleOf, Regex, etc.), the abort flag for short-circuiting, the when conditional, and user-defined refinements via .refine() and .superRefine(). Covers continuability and the check attachment lifecycle.",
+      "parent": "Core Architecture",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Parsing Pipeline",
+      "purpose": "How parse(), safeParse(), parseAsync(), and safeParseAsync() work internally. Covers ParsePayload, ParseContextInternal, the run() vs parse() distinction, direction (forward/backward), the $ZodAsyncError, and how issues are finalized via finalizeIssue().",
+      "parent": "Core Architecture",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Transforms, Pipes, and Codecs",
+      "purpose": "Explains unidirectional transforms (.transform()), pipe chaining ($ZodPipe), and bidirectional codecs ($ZodCodec with decode/encode). Covers the direction-aware architecture, when transforms are prohibited (backward direction), and the z.decode()/z.encode() API.",
+      "parent": "Core Architecture",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Wrappers and Modifiers",
+      "purpose": "Covers schema wrappers: optional, nullable, nullish, default, prefault, catch, readonly, brand, promise, and lazy. Explains the difference between default (output-side) and prefault (input-side), and how branded types simulate nominal typing.",
+      "parent": "Core Architecture",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Coercion and ISO Schemas",
+      "purpose": "Documents the z.coerce namespace (string, number, boolean, bigint, date) and the ISO sub-module (datetime, date, time, duration). Explains how coercion uses JavaScript constructors and the difference from standard schemas.",
+      "parent": "Core Architecture",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Error Handling",
+      "purpose": "Overview of Zod's error system: ZodError, ZodIssue types, error formatting utilities, and internationalization. Links to child pages for error types, formatting, and customization.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "ZodError and Issue Types",
+      "purpose": "Reference for the $ZodError class and all $ZodIssue subtypes: invalid_type, too_big, too_small, invalid_format, not_multiple_of, unrecognized_keys, invalid_union, invalid_key, invalid_element, invalid_value, and custom. Covers the path array and how issues are collected during parsing.",
+      "parent": "Error Handling",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Error Formatting Utilities",
+      "purpose": "Documents z.treeifyError(), z.prettifyError(), z.formatError(), and z.flattenError(). Explains the $ZodFormattedError and $ZodFlattenedError types and when to use each utility.",
+      "parent": "Error Handling",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Error Customization and Localization",
+      "purpose": "Covers the $ZodErrorMap interface, the error precedence chain (schema-level > per-parse > global > locale), z.config() for global configuration, and the locales subsystem with 50+ language packs. Explains pluralization, grammatical gender handling, and tree-shaking locale imports.",
+      "parent": "Error Handling",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "JSON Schema Integration",
+      "purpose": "Overview of Zod's bidirectional JSON Schema support: converting Zod schemas to JSON Schema and importing JSON Schema as Zod schemas. Links to child pages for each direction.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Zod to JSON Schema (toJSONSchema)",
+      "purpose": "Documents the toJSONSchema() function: supported targets (draft-04, draft-07, draft-2020-12, openapi-3.0), io mode (input vs output), cycle handling, reused schema strategies ($defs), unrepresentable types, the override callback, and the Standard Schema integration (~standard property).",
+      "parent": "JSON Schema Integration",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "JSON Schema to Zod (fromJSONSchema)",
+      "purpose": "Documents the fromJSONSchema() function: supported JSON Schema keywords, version detection, $ref/$defs resolution, and limitations. Covers the ConversionContext and how unrecognized keywords are handled.",
+      "parent": "JSON Schema Integration",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Metadata and Registries",
+      "purpose": "Explains the $ZodRegistry system for attaching strongly-typed metadata to schemas, the globalRegistry, .meta() and .describe() methods, the JSONSchemaMeta interface, and how registries integrate with toJSONSchema() for id/title/description propagation.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Registry API",
+      "purpose": "Detailed API reference for $ZodRegistry: add(), get(), has(), remove(), clear(), id-based lookup via _idmap, metadata inheritance from parent schemas, and the $replace type utility for input/output-aware metadata.",
+      "parent": "Metadata and Registries",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Standard Schema Compatibility",
+      "purpose": "Documents Zod's implementation of the Standard Schema V1 specification via the ~standard property. Covers StandardSchemaV1 interface, validate(), input/output type inference, and how this enables interoperability with other validation libraries.",
+      "parent": "Metadata and Registries",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Package Variants",
+      "purpose": "Overview of the three Zod package variants (zod, zod/mini, zod/v4/core) and their trade-offs. Links to child pages for each variant.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Zod (Classic)",
+      "purpose": "Documents the full-featured Zod package: the ZodType base class with fluent method chaining, all convenience methods (.min(), .max(), .email(), etc.), the coerce namespace, iso sub-module, and the compat layer for Zod v3 compatibility.",
+      "parent": "Package Variants",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Zod Mini",
+      "purpose": "Documents the tree-shakable Zod Mini variant: functional API (z.parse(schema, data) instead of schema.parse(data)), how methods become standalone functions, bundle size comparison, and when to choose Mini over Classic.",
+      "parent": "Package Variants",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Zod Core (zod/v4/core)",
+      "purpose": "Documents the zod/v4/core sub-package intended for library authors: $ZodType base class, $ZodCheck base class, $ZodError, the $constructor pattern, and how to build custom schema implementations on top of core.",
+      "parent": "Package Variants",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Ecosystem and Integrations",
+      "purpose": "Overview of Zod's ecosystem: third-party integrations, form libraries, API frameworks, schema converters, and official integration tests. Links to child pages for the ecosystem catalog and library author guidance.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Ecosystem Catalog",
+      "purpose": "Categorized directory of third-party libraries: API frameworks (tRPC, oRPC), form integrations (react-hook-form, TanStack Form), Zod-to-X converters (OpenAPI, JSON Schema), X-to-Zod generators (Prisma, Drizzle), mocking libraries, and utilities. Covers the ZodResource data model and GitHub stars loader.",
+      "parent": "Ecosystem and Integrations",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Library Author Guide",
+      "purpose": "Best practices for library authors integrating with Zod: peer dependency configuration, using zod/v4/core for version-agnostic code, Standard Schema as an alternative, and the integration test fixtures (AI SDK, Drizzle ORM, internal types).",
+      "parent": "Ecosystem and Integrations",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Infrastructure and Tooling",
+      "purpose": "Overview of the monorepo infrastructure: build pipeline, CI/CD, testing, benchmarking, and type-checking tooling. Links to child pages for each area.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    }
+  ]
+}
