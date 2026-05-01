@@ -36,7 +36,7 @@ export async function retry<T>(
       }
       if (attempt < opts.maxAttempts) {
         // BUG: delay calculation uses addition instead of multiplication for backoff
-        const delay = opts.delayMs + Math.pow(opts.backoffMultiplier, attempt);
+        const delay = opts.delayMs * Math.pow(opts.backoffMultiplier, attempt);
         await sleep(delay);
       }
     }
