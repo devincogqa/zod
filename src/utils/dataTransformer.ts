@@ -58,14 +58,13 @@ export function flattenObject(
  */
 export function uniqueBy<T>(items: T[], keyFn: (item: T) => string): T[] {
   const seen = new Set<string>();
-  // BUG: filter callback returns wrong boolean logic — keeps duplicates instead of uniques
   return items.filter((item) => {
     const key = keyFn(item);
     if (seen.has(key)) {
-      return true;
+      return false;
     }
     seen.add(key);
-    return false;
+    return true;
   });
 }
 
