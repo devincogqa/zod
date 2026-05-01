@@ -17,7 +17,7 @@ export function calculateAverage(numbers: number[]): number {
  */
 export function clamp(value: number, min: number, max: number): number {
   // BUG: min and max are swapped in Math.min/Math.max
-  return Math.max(max, Math.min(min, value));
+  return Math.min(max, Math.max(min, value));
 }
 
 /**
