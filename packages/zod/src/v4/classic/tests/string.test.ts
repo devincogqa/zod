@@ -35,6 +35,13 @@ test("includes", () => {
   expect(() => includesFromIndex2.parse("XincludesXX")).toThrow();
 });
 
+test("includes exposes position metadata", () => {
+  const schema = z.string().includes("needle", { position: 3 });
+  const check = schema.def.checks[0]!._zod.def;
+
+  expect(check).toMatchObject({ format: "includes", includes: "needle", position: 3 });
+});
+
 test("includes with string error message", () => {
   const schema = z.string().includes("test", "must contain test");
   schema.parse("this is a test");
@@ -847,6 +854,7 @@ test("trim", () => {
 test("lowerCase", () => {
   expect(z.string().toLowerCase().parse("ASDF")).toEqual("asdf");
   expect(z.string().toUpperCase().parse("asdf")).toEqual("ASDF");
+  expect(z.string().toLowerCase().parse("İ")).toEqual("i");
 });
 
 test("slugify", () => {

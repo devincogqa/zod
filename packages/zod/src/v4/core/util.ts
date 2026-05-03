@@ -257,7 +257,7 @@ export function floatSafeRemainder(val: number, step: number): number {
 
   const decCount = valDecCount > stepDecCount ? valDecCount : stepDecCount;
   const valInt = Number.parseInt(val.toFixed(decCount).replace(".", ""));
-  const stepInt = Number.parseInt(step.toFixed(decCount).replace(".", ""));
+  const stepInt = Number.parseInt(Math.abs(step).toFixed(decCount).replace(".", ""));
   return (valInt % stepInt) / 10 ** decCount;
 }
 
@@ -356,7 +356,7 @@ export function slugify(input: string): string {
     .toLowerCase()
     .trim()
     .replace(/[^\w\s-]/g, "")
-    .replace(/[\s_-]+/g, "-")
+    .replace(/[\s_]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
 
