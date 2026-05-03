@@ -206,3 +206,4 @@ type MySchemaIn = z.input<typeof mySchema>;
 type MySchemaOut = z.output<typeof mySchema>; // equivalent to z.infer<typeof mySchema>
 // number
 ```
+
