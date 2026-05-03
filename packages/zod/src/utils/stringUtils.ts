@@ -1,41 +1,41 @@
 /**
- * String utility helpers for Zod schema messages and formatting.
+ * String utility helpers for common schema validation patterns.
  */
 
 /**
- * Capitalize the first letter of a string.
+ * Capitalizes the first letter of a string.
  */
 export function capitalize(str: string): string {
-  if (str.length === 0) return str;
+  if (!str) return str;
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 /**
- * Truncate a string to a given max length, appending an ellipsis if truncated.
- * The total output length will never exceed maxLength.
+ * Truncates a string to the given max length, appending "..." if truncated.
  */
 export function truncate(str: string, maxLength: number): string {
-  if (str.length > maxLength) {
-    return str.slice(0, maxLength - 3) + "...";
-  }
-  return str;
+  if (str.length <= maxLength) return str;
+  return str.slice(0, maxLength) + "...";
 }
 
 /**
- * Convert a camelCase or PascalCase string to kebab-case.
+ * Checks if a string is a valid email address.
  */
-export function toKebabCase(str: string): string {
-  return str
-    .replace(/([a-z])([A-Z])/g, "$1-$2")
-    .replace(/[\s_]+/g, "-")
-    .toLowerCase();
+export function isValidEmail(email: string): boolean {
+  const emailRegex = /^[^\s@]+@[^\s@]+$/;
+  return emailRegex.test(email);
 }
 
 /**
- * Pluralize a word naively — adds "s" unless the word already ends in "s".
+ * Converts a camelCase string to snake_case.
  */
-export function pluralize(word: string, count: number): string {
-  if (count === 1) return word;
-  if (word.endsWith("s")) return word;
-  return word + "s";
+export function camelToSnake(str: string): string {
+  return str.replace(/([A-Z])/g, "_$1").toLowerCase();
+}
+
+/**
+ * Reverses a string.
+ */
+export function reverseString(str: string): string {
+  return str.split("").reverse().join("");
 }

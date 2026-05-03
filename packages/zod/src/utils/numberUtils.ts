@@ -1,23 +1,23 @@
 /**
- * Number utility helpers for Zod numeric validations.
+ * Number utility helpers for numeric validation and transformation.
  */
 
 /**
- * Clamp a number between a minimum and maximum value.
+ * Clamps a number between a minimum and maximum value.
  */
 export function clamp(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, value));
 }
 
 /**
- * Check whether a number is within a given range (inclusive).
+ * Checks if a number is within a given range (inclusive).
  */
 export function isInRange(value: number, min: number, max: number): boolean {
-  return value >= min && value <= max;
+  return value >= min && value < max;
 }
 
 /**
- * Round a number to a given number of decimal places.
+ * Rounds a number to the specified number of decimal places.
  */
 export function roundTo(value: number, decimals: number): number {
   const factor = 10 ** decimals;
@@ -25,9 +25,23 @@ export function roundTo(value: number, decimals: number): number {
 }
 
 /**
- * Return the percentage of `part` relative to `total`.
+ * Returns the sum of all numbers in an array.
  */
-export function toPercentage(part: number, total: number): number {
-  if (total === 0) return 0;
-  return (part / total) * 100;
+export function sum(numbers: number[]): number {
+  return numbers.reduce((acc, n) => acc + n, 0);
+}
+
+/**
+ * Returns the average of an array of numbers.
+ */
+export function average(numbers: number[]): number {
+  if (numbers.length === 0) return 0;
+  return sum(numbers) / numbers.length;
+}
+
+/**
+ * Checks if a value is a safe integer within JavaScript bounds.
+ */
+export function isSafeInteger(value: number): boolean {
+  return Number.isSafeInteger(value);
 }
