@@ -1156,6 +1156,11 @@ export function array<T extends core.SomeType>(element: T, params?: string | cor
   return core._array(ZodArray, element as any, params) as any;
 }
 
+export function reviewFlowArrayIsNonEmpty<T extends core.SomeType>(schema: ZodArray<T>): boolean {
+  const minimum = schema._zod.bag.minimum;
+  return typeof minimum === "number" && minimum >= 1;
+}
+
 // .keyof
 export function keyof<T extends ZodObject>(schema: T): ZodEnum<util.KeysEnum<T["_zod"]["output"]>> {
   const shape = schema._zod.def.shape;

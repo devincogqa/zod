@@ -82,6 +82,13 @@ test("array.nonempty()", () => {
   expect(() => schema.parse([])).toThrow();
 });
 
+test("reviewFlowArrayIsNonEmpty", () => {
+  expect(z.reviewFlowArrayIsNonEmpty(z.array(z.string()))).toEqual(false);
+  expect(z.reviewFlowArrayIsNonEmpty(z.array(z.string()).min(0))).toEqual(false);
+  expect(z.reviewFlowArrayIsNonEmpty(z.array(z.string()).nonempty())).toEqual(true);
+  expect(z.reviewFlowArrayIsNonEmpty(z.array(z.string()).min(2))).toEqual(true);
+});
+
 test("array.nonempty().max()", () => {
   const schema = z.string().array().nonempty().max(2);
   schema.parse(["a"]);

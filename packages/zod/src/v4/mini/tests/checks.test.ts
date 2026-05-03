@@ -63,6 +63,13 @@ test("z.minLength", () => {
   expect(z.safeParse(a, ["a", "b", "c"]).success).toEqual(true);
 });
 
+test("z.reviewFlowArrayIsNonEmpty", () => {
+  expect(z.reviewFlowArrayIsNonEmpty(z.array(z.string()))).toEqual(false);
+  expect(z.reviewFlowArrayIsNonEmpty(z.array(z.string()).check(z.minLength(0)))).toEqual(false);
+  expect(z.reviewFlowArrayIsNonEmpty(z.array(z.string()).check(z.minLength(1)))).toEqual(true);
+  expect(z.reviewFlowArrayIsNonEmpty(z.array(z.string()).check(z.minLength(2)))).toEqual(true);
+});
+
 // size;
 test("z.length", () => {
   const a = z.array(z.string()).check(z.length(3));
