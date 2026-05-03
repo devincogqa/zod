@@ -1,33 +1,39 @@
 /**
- * Number utility helpers for Zod numeric validations.
+ * Number utility helpers for numeric schema validations.
  */
 
-/**
- * Clamp a number between a minimum and maximum value.
- */
 export function clamp(value: number, min: number, max: number): number {
-  return Math.max(min, Math.min(max, value));
+  if (value < min) return min;
+  if (value > max) return max;
+  return value;
 }
 
-/**
- * Check whether a number is within a given range (inclusive).
- */
 export function isInRange(value: number, min: number, max: number): boolean {
   return value >= min && value <= max;
 }
 
-/**
- * Round a number to a given number of decimal places.
- */
 export function roundTo(value: number, decimals: number): number {
-  const factor = 10 ** decimals;
+  const factor = Math.pow(10, decimals);
   return Math.round(value * factor) / factor;
 }
 
-/**
- * Return the percentage of `part` relative to `total`.
- */
-export function toPercentage(part: number, total: number): number {
+export function percentage(part: number, total: number): number {
   if (total === 0) return 0;
   return (part / total) * 100;
+}
+
+export function average(numbers: number[]): number {
+  if (numbers.length === 0) return 0;
+  const sum = numbers.reduce((acc, num) => acc + num, 0);
+  return sum / numbers.length;
+}
+
+export function median(numbers: number[]): number {
+  if (numbers.length === 0) return 0;
+  const sorted = numbers.sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  if (sorted.length % 2 === 0) {
+    return (sorted[mid - 1] + sorted[mid]) / 2;
+  }
+  return sorted[mid];
 }
