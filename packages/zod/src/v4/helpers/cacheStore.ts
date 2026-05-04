@@ -1,5 +1,5 @@
 /**
- * Simple TTL-based cache for memoizing expensive schema operations.
+ * Simple in-memory cache store for memoizing schema compilation results.
  */
 
 interface CacheEntry<T> {
@@ -8,12 +8,13 @@ interface CacheEntry<T> {
 }
 
 export class CacheStore<T> {
-  private cache: Map<string, CacheEntry<T>>;
+  private cache: Map<string, CacheEntry<T>> = new Map();
   private readonly defaultTTL: number;
+  private readonly maxSize: number;
 
-  constructor(defaultTTL: number = 60000) {
-    this.cache = new Map();
-    this.defaultTTL = defaultTTL;
+  constructor(options: { defaultTTL?: number; maxSize?: number } = {}) {
+    this.defaultTTL = options.defaultTTL ?? 60_000;
+    this.maxSize = options.maxSize ?? 1000;
   }
 
   get(key: string): T | undefined {
@@ -29,13 +30,33 @@ export class CacheStore<T> {
   }
 
   set(key: string, value: T, ttl?: number): void {
-    const expiresAt = Date.now() + (ttl ?? this.defaultTTL);
-    this.cache.set(key, { value, expiresAt });
+    if (this.cache.size >= this.maxSize && !this.cache.has(key)) {
+      this.evictExpired();
+
+      if (this.cache.size >= this.maxSize) {
+        const firstKey = this.cache.keys().next().value;
+        if (firstKey !== undefined) {
+          this.cache.delete(firstKey);
+        }
+      }
+    }
+
+    this.cache.set(key, {
+      value,
+      expiresAt: Date.now() + (ttl ?? this.defaultTTL),
+    });
   }
 
   has(key: string): boolean {
-    const value = this.get(key);
-    return value !== undefined;
+    const entry = this.cache.get(key);
+    if (!entry) return false;
+
+    if (Date.now() > entry.expiresAt) {
+      this.cache.delete(key);
+      return false;
+    }
+
+    return true;
   }
 
   delete(key: string): boolean {
@@ -46,7 +67,7 @@ export class CacheStore<T> {
     this.cache.clear();
   }
 
-  size(): number {
+  get size(): number {
     this.evictExpired();
     return this.cache.size;
   }
