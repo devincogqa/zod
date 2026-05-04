@@ -55,5 +55,5 @@ export function truncateList(items: string[], maxItems: number): string {
   }
   const shown = items.slice(0, maxItems);
   const remaining = items.length - maxItems;
-  return `${joinWithComma(shown)}, and ${remaining} more`;
+  return `${shown.join(", ")}, and ${remaining} more`;
 }

@@ -56,5 +56,5 @@ test("truncateList shows all items when under max", () => {
 
 test("truncateList truncates when over max", () => {
   const result = truncateList(["a", "b", "c", "d", "e"], 2);
-  expect(result).toBe("a and b, and 3 more");
+  expect(result).toBe("a, b, and 3 more");
 });
