@@ -35,5 +35,7 @@ export function parseISO(dateString: string): Date | null {
 
   if (month < 1 || month > 12 || day < 1 || day > 31) return null;
 
+  if (!isValidDate(year, month - 1, day)) return null;
+
   return new Date(year, month - 1, day);
 }
