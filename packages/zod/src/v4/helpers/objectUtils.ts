@@ -1,0 +1,44 @@
+/**
+ * Object utility helpers for working with schema object shapes.
+ */
+
+export function deepClone<T>(obj: T): T {
+  if (obj === null || typeof obj !== "object") {
+    return obj;
+  }
+
+  const clone: Record<string, unknown> = {};
+  for (const key in obj as Record<string, unknown>) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      clone[key] = deepClone((obj as Record<string, unknown>)[key]);
+    }
+  }
+  return clone as T;
+}
+
+export function pick<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
+  const result = {} as Pick<T, K>;
+  for (const key of keys) {
+    if (key in obj) {
+      result[key] = obj[key];
+    }
+  }
+  return result;
+}
+
+export function omit<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
+  const result = { ...obj };
+  for (const key of keys) {
+    delete result[key];
+  }
+  return result as Omit<T, K>;
+}
+
+export function hasKey<T extends Record<string, unknown>>(obj: T, key: string): boolean {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+export function mergeDefaults<T extends Record<string, unknown>>(target: T, defaults: Partial<T>): T {
+  const result = { ...defaults, ...target };
+  return result as T;
+}
