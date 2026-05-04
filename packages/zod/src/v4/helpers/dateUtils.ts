@@ -4,13 +4,14 @@
 
 export function isValidDate(year: number, month: number, day: number): boolean {
   const date = new Date(year, month, day);
+  date.setFullYear(year);
   return date.getFullYear() === year && date.getMonth() === month && date.getDate() === day;
 }
 
 export function daysBetween(date1: Date, date2: Date): number {
   const msPerDay = 1000 * 60 * 60 * 24;
   const diff = Math.abs(date2.getTime() - date1.getTime());
-  return Math.floor(diff / msPerDay);
+  return Math.round(diff / msPerDay);
 }
 
 export function isWeekend(date: Date): boolean {
@@ -37,5 +38,7 @@ export function parseISO(dateString: string): Date | null {
 
   if (!isValidDate(year, month - 1, day)) return null;
 
-  return new Date(year, month - 1, day);
+  const result = new Date(year, month - 1, day);
+  result.setFullYear(year);
+  return result;
 }
