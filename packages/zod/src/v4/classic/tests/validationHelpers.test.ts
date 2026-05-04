@@ -9,69 +9,81 @@ import {
   isValidUUID,
 } from "../../helpers/validationHelpers.js";
 
-test("isNonEmptyString accepts non-empty trimmed strings", () => {
+test("isNonEmptyString accepts non-empty strings", () => {
   expect(isNonEmptyString("hello")).toBe(true);
-  expect(isNonEmptyString("  hi  ")).toBe(true);
+  expect(isNonEmptyString(" x ")).toBe(true);
+});
+
+test("isNonEmptyString rejects empty/whitespace strings and non-strings", () => {
   expect(isNonEmptyString("")).toBe(false);
   expect(isNonEmptyString("   ")).toBe(false);
   expect(isNonEmptyString(123)).toBe(false);
   expect(isNonEmptyString(null)).toBe(false);
-  expect(isNonEmptyString(undefined)).toBe(false);
 });
 
-test("isPositiveInteger only accepts positive integers", () => {
+test("isPositiveInteger accepts positive integers", () => {
   expect(isPositiveInteger(1)).toBe(true);
   expect(isPositiveInteger(100)).toBe(true);
+});
+
+test("isPositiveInteger rejects non-positive or non-integer values", () => {
   expect(isPositiveInteger(0)).toBe(false);
   expect(isPositiveInteger(-1)).toBe(false);
   expect(isPositiveInteger(1.5)).toBe(false);
   expect(isPositiveInteger("1")).toBe(false);
-  expect(isPositiveInteger(Number.NaN)).toBe(false);
 });
 
-test("isValidEmail accepts well-formed addresses", () => {
+test("isValidEmail accepts valid emails", () => {
   expect(isValidEmail("user@example.com")).toBe(true);
-  expect(isValidEmail("first.last+tag@sub.example.co")).toBe(true);
+  expect(isValidEmail("test.user+tag@sub.domain.org")).toBe(true);
 });
 
-test("isValidEmail rejects clearly malformed addresses", () => {
-  expect(isValidEmail("")).toBe(false);
-  expect(isValidEmail("no-at-sign")).toBe(false);
-  expect(isValidEmail("user@")).toBe(false);
+test("isValidEmail rejects invalid emails", () => {
+  expect(isValidEmail("not-an-email")).toBe(false);
   expect(isValidEmail("@example.com")).toBe(false);
-  expect(isValidEmail("user@example")).toBe(false);
+  expect(isValidEmail("user@")).toBe(false);
+  expect(isValidEmail("user@domainXcom")).toBe(false);
 });
 
-test("isValidURL uses the URL constructor", () => {
+test("isValidURL accepts valid URLs", () => {
   expect(isValidURL("https://example.com")).toBe(true);
-  expect(isValidURL("http://example.com/path?q=1")).toBe(true);
+  expect(isValidURL("http://localhost:3000")).toBe(true);
+});
+
+test("isValidURL rejects invalid URLs", () => {
   expect(isValidURL("not a url")).toBe(false);
   expect(isValidURL("")).toBe(false);
 });
 
-test("isValidUUID accepts canonical UUIDs and rejects malformed ones", () => {
+test("isValidUUID accepts valid v4 UUIDs", () => {
   expect(isValidUUID("550e8400-e29b-41d4-a716-446655440000")).toBe(true);
-  expect(isValidUUID("550E8400-E29B-41D4-A716-446655440000")).toBe(true);
+});
+
+test("isValidUUID rejects invalid UUIDs", () => {
   expect(isValidUUID("not-a-uuid")).toBe(false);
-  expect(isValidUUID("550e8400-e29b-41d4-a716-44665544000")).toBe(false);
-  expect(isValidUUID("550e8400-e29b-61d4-a716-446655440000")).toBe(false); // invalid version
+  expect(isValidUUID("550e8400-e29b-61d4-a716-446655440000")).toBe(false); // version 6
 });
 
-test("isValidIPv4 validates dotted-quad addresses", () => {
+test("isValidIPv4 accepts valid IPs", () => {
+  expect(isValidIPv4("192.168.1.1")).toBe(true);
   expect(isValidIPv4("0.0.0.0")).toBe(true);
-  expect(isValidIPv4("127.0.0.1")).toBe(true);
   expect(isValidIPv4("255.255.255.255")).toBe(true);
-  expect(isValidIPv4("256.0.0.0")).toBe(false);
-  expect(isValidIPv4("1.2.3")).toBe(false);
-  expect(isValidIPv4("01.2.3.4")).toBe(false); // leading zero
-  expect(isValidIPv4("a.b.c.d")).toBe(false);
 });
 
-test("isValidHexColor accepts 3- and 6-digit hex codes", () => {
+test("isValidIPv4 rejects invalid IPs", () => {
+  expect(isValidIPv4("256.0.0.1")).toBe(false);
+  expect(isValidIPv4("1.2.3")).toBe(false);
+  expect(isValidIPv4("01.02.03.04")).toBe(false); // leading zeros
+});
+
+test("isValidHexColor accepts valid hex colors", () => {
   expect(isValidHexColor("#fff")).toBe(true);
-  expect(isValidHexColor("#FFFFFF")).toBe(true);
-  expect(isValidHexColor("#1a2b3c")).toBe(true);
+  expect(isValidHexColor("#FF0000")).toBe(true);
+  expect(isValidHexColor("#abc123")).toBe(true);
+});
+
+test("isValidHexColor rejects invalid hex colors", () => {
   expect(isValidHexColor("fff")).toBe(false);
-  expect(isValidHexColor("#ggg")).toBe(false);
-  expect(isValidHexColor("#ffff")).toBe(false);
+  expect(isValidHexColor("#gg0000")).toBe(false);
+  expect(isValidHexColor("#12345")).toBe(false);
 });

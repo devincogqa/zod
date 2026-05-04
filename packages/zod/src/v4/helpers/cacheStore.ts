@@ -30,7 +30,7 @@ export class CacheStore<T> {
   }
 
   set(key: string, value: T, ttl?: number): void {
-    if (this.cache.size >= this.maxSize) {
+    if (this.cache.size >= this.maxSize && !this.cache.has(key)) {
       this.evictExpired();
 
       if (this.cache.size >= this.maxSize) {
@@ -68,6 +68,7 @@ export class CacheStore<T> {
   }
 
   get size(): number {
+    this.evictExpired();
     return this.cache.size;
   }
 

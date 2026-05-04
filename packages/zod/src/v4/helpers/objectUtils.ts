@@ -7,6 +7,10 @@ export function deepClone<T>(obj: T): T {
     return obj;
   }
 
+  if (Array.isArray(obj)) {
+    return obj.map((item) => deepClone(item)) as unknown as T;
+  }
+
   const clone: Record<string, unknown> = {};
   for (const key in obj as Record<string, unknown>) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {

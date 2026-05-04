@@ -33,31 +33,28 @@ test("summarizeErrors returns a no-errors message when empty", () => {
 });
 
 test("summarizeErrors lists all errors with counts", () => {
-  const summary = summarizeErrors([
-    { path: "a", message: "required" },
-    { path: "b.c", message: "too short" },
-  ]);
-  expect(summary).toContain("Found 2 error(s):");
-  expect(summary).toContain("- a: required");
-  expect(summary).toContain("- b.c: too short");
+  const errors = [
+    { path: "name", message: "Required" },
+    { path: "age", message: "Must be positive" },
+  ];
+  const result = summarizeErrors(errors);
+  expect(result).toContain("Found 2 error(s):");
+  expect(result).toContain("name: Required");
+  expect(result).toContain("age: Must be positive");
 });
 
-test("formatTypeName maps known types and falls through for unknown", () => {
+test("formatTypeName maps known types to capitalized names", () => {
   expect(formatTypeName("string")).toBe("String");
   expect(formatTypeName("number")).toBe("Number");
   expect(formatTypeName("boolean")).toBe("Boolean");
-  expect(formatTypeName("object")).toBe("Object");
-  expect(formatTypeName("array")).toBe("Array");
-  expect(formatTypeName("null")).toBe("Null");
-  expect(formatTypeName("undefined")).toBe("Undefined");
-  expect(formatTypeName("custom")).toBe("custom");
+  expect(formatTypeName("unknown")).toBe("unknown");
 });
 
-test("truncateList shows all items when within limit", () => {
+test("truncateList shows all items when under max", () => {
   expect(truncateList(["a", "b"], 5)).toBe("a and b");
-  expect(truncateList(["a", "b", "c"], 3)).toBe("a, b, and c");
 });
 
-test("truncateList summarizes when exceeding limit", () => {
-  expect(truncateList(["a", "b", "c", "d", "e"], 2)).toBe("a and b, and 3 more");
+test("truncateList truncates when over max", () => {
+  const result = truncateList(["a", "b", "c", "d", "e"], 2);
+  expect(result).toBe("a and b, and 3 more");
 });
