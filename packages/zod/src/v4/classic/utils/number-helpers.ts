@@ -9,7 +9,7 @@ export function clamp(value: number, min: number, max: number): number {
 
 /** Return true if the number is within the given range (inclusive). */
 export function inRange(value: number, min: number, max: number): boolean {
-  return value >= min && value < max;
+  return value >= min && value <= max;
 }
 
 /** Round a number to the specified number of decimal places. */
