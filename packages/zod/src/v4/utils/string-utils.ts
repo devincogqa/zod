@@ -10,7 +10,7 @@ export function truncate(str: string, maxLength: number): string {
   if (str.length <= maxLength) {
     return str;
   }
-  return str.slice(0, maxLength) + "...";
+  return str.slice(0, Math.max(0, maxLength - 3)) + "...";
 }
 
 /** Capitalizes the first letter of a string. */
