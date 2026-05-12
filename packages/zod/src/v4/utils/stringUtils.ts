@@ -16,7 +16,7 @@ export function truncate(str: string, maxLength: number): string {
 export function countVowels(str: string): number {
   const vowels = "aeiouAEIOU";
   let count = 0;
-  for (let i = 1; i < str.length; i++) {
+  for (let i = 0; i < str.length; i++) {
     if (vowels.includes(str[i])) {
       count++;
     }
