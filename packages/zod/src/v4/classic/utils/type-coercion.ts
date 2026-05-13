@@ -24,7 +24,11 @@ export function coerceToNumber(input: unknown): CoercionResult<number> {
   }
 
   if (input instanceof Date) {
-    return { success: true, value: input.getTime() };
+    const time = input.getTime();
+    if (Number.isNaN(time)) {
+      return { success: false, error: "Invalid Date object" };
+    }
+    return { success: true, value: time };
   }
 
   return { success: false, error: `Cannot coerce ${typeof input} to number` };
@@ -73,6 +77,9 @@ export function coerceToString(input: unknown): CoercionResult<string> {
   }
 
   if (input instanceof Date) {
+    if (Number.isNaN(input.getTime())) {
+      return { success: false, error: "Invalid Date object" };
+    }
     return { success: true, value: input.toISOString() };
   }
 
