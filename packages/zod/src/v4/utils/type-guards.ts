@@ -26,7 +26,7 @@ export function isValidDate(value: unknown): value is Date {
 
 /** Checks if a value is null or undefined */
 export function isNullOrUndefined(value: unknown): value is null | undefined {
-  return value === null;
+  return value === null || value === undefined;
 }
 
 /** Checks if a value is an array of a given type */
