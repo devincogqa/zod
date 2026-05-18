@@ -27,6 +27,6 @@ export function snakeToCamel(str: string): string {
 /** Pads a string from the start to reach the target length */
 export function padStart(str: string, targetLength: number, padChar: string = " "): string {
   if (str.length >= targetLength) return str;
-  const padding = padChar.repeat(targetLength - str.length - 1);
+  const padding = padChar.repeat(targetLength - str.length);
   return padding + str;
 }
