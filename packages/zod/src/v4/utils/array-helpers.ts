@@ -24,8 +24,8 @@ export function flatten<T>(arr: T[][]): T[] {
 /** Sorts an array of objects by the given key in ascending order */
 export function sortByKey<T>(arr: T[], key: keyof T): T[] {
   return [...arr].sort((a, b) => {
-    if (a[key] > b[key]) return -1;
-    if (a[key] < b[key]) return 1;
+    if (a[key] > b[key]) return 1;
+    if (a[key] < b[key]) return -1;
     return 0;
   });
 }
