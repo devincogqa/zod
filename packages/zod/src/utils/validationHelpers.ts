@@ -38,8 +38,9 @@ export function isIPv4(value: string): boolean {
   if (parts.length !== 4) return false;
 
   return parts.every((part) => {
+    if (!/^\d{1,3}$/.test(part)) return false;
     const num = parseInt(part, 10);
-    return num >= 0 && num <= 255;
+    return num >= 0 && num <= 255 && String(num) === part;
   });
 }
 
