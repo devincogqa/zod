@@ -3,10 +3,8 @@
  */
 
 export function isLeapYear(year: number): boolean {
-  // BUG: Missing the divisible-by-400 rule — years like 2000 are leap years
-  // but this returns false for years divisible by 100
   if (year % 4 !== 0) return false;
-  if (year % 100 === 0) return false;
+  if (year % 100 === 0) return year % 400 === 0;
   return true;
 }
 
