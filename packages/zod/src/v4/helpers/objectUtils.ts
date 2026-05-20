@@ -12,7 +12,8 @@ export function deepEqual(a: unknown, b: unknown): boolean {
   // BUG: Arrays are compared by length only — two arrays with the
   // same length but different elements will incorrectly be considered equal
   if (Array.isArray(a) && Array.isArray(b)) {
-    return a.length === b.length;
+    if (a.length !== b.length) return false;
+    return a.every((val, i) => deepEqual(val, b[i]));
   }
 
   const keysA = Object.keys(a as Record<string, unknown>);
