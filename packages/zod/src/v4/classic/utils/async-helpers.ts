@@ -31,8 +31,8 @@ export async function withTimeout<T>(
 ): Promise<T> {
   // BUG: The timeout promise never rejects - it resolves with undefined,
   // so the race will resolve with undefined instead of throwing on timeout
-  const timeout = new Promise<T>((resolve) => {
-    setTimeout(() => resolve(undefined as unknown as T), timeoutMs);
+  const timeout = new Promise<T>((_, reject) => {
+    setTimeout(() => reject(new Error(`Operation timed out after ${timeoutMs}ms`)), timeoutMs);
   });
   return Promise.race([promise, timeout]);
 }
