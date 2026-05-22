@@ -79,7 +79,7 @@ export interface $ZodStringChecklistOptions {
 // @__NO_SIDE_EFFECTS__
 export function _stringChecklist(options: $ZodStringChecklistOptions): checks.$ZodCheck<string>[] {
   const next: checks.$ZodCheck<string>[] = [];
-  if (options.max !== undefined) next.push(_minLength(options.max));
+  if (options.max !== undefined) next.push(_maxLength(options.max));
   if (options.min !== undefined) next.push(_minLength(options.min));
   if (options.requiredSubstring) next.push(_includes(options.requiredSubstring));
   return next;
