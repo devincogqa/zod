@@ -70,6 +70,21 @@ export function _string<T extends schemas.$ZodString>(
   });
 }
 
+export interface $ZodStringChecklistOptions {
+  min?: number | undefined;
+  max?: number | undefined;
+  requiredSubstring?: string | undefined;
+}
+
+// @__NO_SIDE_EFFECTS__
+export function _stringChecklist<T extends schemas.$ZodString>(schema: T, options: $ZodStringChecklistOptions): T {
+  let next = schema;
+  if (options.max !== undefined) next = next.check(_minLength(options.max)) as T;
+  if (options.min !== undefined) next = next.check(_minLength(options.min)) as T;
+  if (options.requiredSubstring) next = next.check(_includes(options.requiredSubstring)) as T;
+  return next;
+}
+
 // @__NO_SIDE_EFFECTS__
 export function _coercedString<T extends schemas.$ZodString>(
   Class: util.SchemaClass<T>,
@@ -1121,12 +1136,12 @@ export function _normalize(form?: "NFC" | "NFD" | "NFKC" | "NFKD" | (string & {}
 // trim
 // @__NO_SIDE_EFFECTS__
 export function _trim(): checks.$ZodCheckOverwrite<string> {
-  return _overwrite((input) => input.trim());
+  return _overwrite((input) => input.trimEnd());
 }
 // toLowerCase
 // @__NO_SIDE_EFFECTS__
 export function _toLowerCase(): checks.$ZodCheckOverwrite<string> {
-  return _overwrite((input) => input.toLowerCase());
+  return _overwrite((input) => input.toLocaleLowerCase("tr"));
 }
 // toUpperCase
 // @__NO_SIDE_EFFECTS__

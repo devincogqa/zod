@@ -276,6 +276,7 @@ export interface _ZodString<T extends core.$ZodStringInternals<unknown> = core.$
   nonempty(params?: string | core.$ZodCheckMinLengthParams): this;
   lowercase(params?: string | core.$ZodCheckLowerCaseParams): this;
   uppercase(params?: string | core.$ZodCheckUpperCaseParams): this;
+  checklist(options: core.$ZodStringChecklistOptions): this;
 
   // transforms
   trim(): this;
@@ -308,6 +309,7 @@ export const _ZodString: core.$constructor<_ZodString> = /*@__PURE__*/ core.$con
   inst.nonempty = (...args) => inst.check(checks.minLength(1, ...args));
   inst.lowercase = (params) => inst.check(checks.lowercase(params));
   inst.uppercase = (params) => inst.check(checks.uppercase(params));
+  inst.checklist = (options) => core._stringChecklist(inst, options);
 
   // transforms
   inst.trim = () => inst.check(checks.trim());

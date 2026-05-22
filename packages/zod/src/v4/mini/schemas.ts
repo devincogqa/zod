@@ -101,6 +101,11 @@ export function string(params?: string | core.$ZodStringParams): ZodMiniString<s
   return core._string(ZodMiniString, params) as any;
 }
 
+// @__NO_SIDE_EFFECTS__
+export function stringChecklist(options: core.$ZodStringChecklistOptions): ZodMiniString<string> {
+  return core._stringChecklist(string(), options);
+}
+
 // ZodMiniStringFormat
 export interface ZodMiniStringFormat<Format extends string = string>
   extends _ZodMiniString<core.$ZodStringFormatInternals<Format>>,
