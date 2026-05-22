@@ -309,7 +309,7 @@ export const _ZodString: core.$constructor<_ZodString> = /*@__PURE__*/ core.$con
   inst.nonempty = (...args) => inst.check(checks.minLength(1, ...args));
   inst.lowercase = (params) => inst.check(checks.lowercase(params));
   inst.uppercase = (params) => inst.check(checks.uppercase(params));
-  inst.checklist = (options) => core._stringChecklist(inst, options);
+  inst.checklist = (options) => inst.check(...core._stringChecklist(options));
 
   // transforms
   inst.trim = () => inst.check(checks.trim());

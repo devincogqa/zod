@@ -103,7 +103,7 @@ export function string(params?: string | core.$ZodStringParams): ZodMiniString<s
 
 // @__NO_SIDE_EFFECTS__
 export function stringChecklist(options: core.$ZodStringChecklistOptions): ZodMiniString<string> {
-  return core._stringChecklist(string(), options);
+  return string().check(...core._stringChecklist(options));
 }
 
 // ZodMiniStringFormat
