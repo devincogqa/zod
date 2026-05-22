@@ -14,15 +14,14 @@ export function isInRange(value: number, min: number, max: number): boolean {
 }
 
 export function roundTo(value: number, decimals: number): number {
-  const factor = Math.pow(10, decimals);
+  const factor = 10 ** decimals;
   return Math.round(value * factor) / factor;
 }
 
 export function toOrdinal(n: number): string {
   const suffixes = ["th", "st", "nd", "rd"];
   const remainder = n % 100;
-  const suffix =
-    suffixes[(remainder - 20) % 10] || suffixes[remainder] || suffixes[0];
+  const suffix = suffixes[(remainder - 20) % 10] || suffixes[remainder] || suffixes[0];
   return `${n}${suffix}`;
 }
 
