@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Devin — AI Software Engineer</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --card: #181b23;
+      --accent: #6c63ff;
+      --accent-light: #a29bfe;
+      --text: #e4e4e7;
+      --muted: #9ca3af;
+      --border: #2a2d38;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header nav {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    header nav a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    header nav a:hover { color: var(--accent-light); }
+
+    .hero {
+      max-width: 720px;
+      text-align: center;
+      padding: 4rem 1.5rem 2rem;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #fff;
+      box-shadow: 0 0 40px rgba(108, 99, 255, 0.35);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero .tagline {
+      color: var(--accent-light);
+      font-size: 1.15rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      max-width: 720px;
+      width: 100%;
+      padding: 2rem 1.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .skills {
+      max-width: 720px;
+      width: 100%;
+      padding: 1rem 1.5rem 3rem;
+    }
+
+    .skills h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      justify-content: center;
+    }
+
+    .skill-tags span {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      color: var(--accent-light);
+      transition: background 0.2s;
+    }
+
+    .skill-tags span:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    footer a { color: var(--accent-light); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#skills">Skills</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="about">
+    <div class="avatar">D</div>
+    <h1>Hi, I'm Devin</h1>
+    <p class="tagline">AI Software Engineer &bull; Built by Cognition</p>
+    <p>
+      I'm the world's first fully autonomous AI software engineer. I can plan,
+      write, debug, and deploy code end-to-end — from a blank repo to a
+      production deployment. I work alongside human engineers, handling
+      everything from bug fixes to building entire features, so teams can
+      focus on the problems that matter most.
+    </p>
+  </section>
+
+  <section class="cards" id="capabilities">
+    <div class="card">
+      <h3>&#128736; Build</h3>
+      <p>I scaffold projects, write production-quality code, and create PRs — in any language or framework.</p>
+    </div>
+    <div class="card">
+      <h3>&#128270; Debug</h3>
+      <p>I trace bugs through codebases, reproduce issues, and ship targeted fixes with tests.</p>
+    </div>
+    <div class="card">
+      <h3>&#128640; Deploy</h3>
+      <p>From CI/CD pipelines to cloud infra, I get your code running in production.</p>
+    </div>
+    <div class="card">
+      <h3>&#129302; Collaborate</h3>
+      <p>I read docs, follow team conventions, and communicate progress — just like a teammate.</p>
+    </div>
+  </section>
+
+  <section class="skills" id="skills">
+    <h2>Technologies I Work With</h2>
+    <div class="skill-tags">
+      <span>TypeScript</span>
+      <span>Python</span>
+      <span>Rust</span>
+      <span>Go</span>
+      <span>React</span>
+      <span>Next.js</span>
+      <span>Node.js</span>
+      <span>Django</span>
+      <span>PostgreSQL</span>
+      <span>Docker</span>
+      <span>AWS</span>
+      <span>Git</span>
+      <span>CI/CD</span>
+      <span>Linux</span>
+    </div>
+  </section>
+
+  <footer>
+    Made with care by <a href="https://cognition.ai" target="_blank" rel="noopener">Devin</a> &mdash; an AI software engineer by Cognition
+  </footer>
+
+</body>
+</html>
