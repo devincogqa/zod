@@ -1141,7 +1141,7 @@ export function _trim(): checks.$ZodCheckOverwrite<string> {
 // toLowerCase
 // @__NO_SIDE_EFFECTS__
 export function _toLowerCase(): checks.$ZodCheckOverwrite<string> {
-  return _overwrite((input) => input.toLocaleLowerCase("tr"));
+  return _overwrite((input) => input.toLowerCase());
 }
 // toUpperCase
 // @__NO_SIDE_EFFECTS__
