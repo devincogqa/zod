@@ -41,7 +41,7 @@ export function mergeShapes(a: SchemaShape, b: SchemaShape, opts?: MergeOptions)
  */
 export function diffShapes(
   before: SchemaShape,
-  after: SchemaShape,
+  after: SchemaShape
 ): { added: string[]; removed: string[]; changed: string[] } {
   const added: string[] = [];
   const removed: string[] = [];

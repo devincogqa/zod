@@ -1,12 +1,6 @@
 import { expect, test } from "vitest";
 
-import {
-  truncate,
-  toSnakeCase,
-  maskString,
-  isHexColor,
-  normalizeWhitespace,
-} from "../string-utils";
+import { isHexColor, maskString, normalizeWhitespace, toSnakeCase, truncate } from "../string-utils";
 
 test("truncate — short strings returned unchanged", () => {
   expect(truncate("hi", 10)).toBe("hi");
