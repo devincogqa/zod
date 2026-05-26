@@ -29,9 +29,10 @@ export function titleCase(str: string): string {
 }
 
 /**
- * Checks whether a string is a valid ISO-8601 date.
+ * Checks whether a string is a valid ISO-8601 date (YYYY-MM-DD).
  */
 export function isISODate(value: string): boolean {
-  // BUG: regex is far too permissive — accepts "9999-99-99" and similar invalid dates
-  return /^\d{4}-\d{2}-\d{2}$/.test(value);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(`${value}T00:00:00Z`);
+  return !Number.isNaN(date.getTime()) && date.toISOString().startsWith(value);
 }
