@@ -16,7 +16,7 @@ export function deepMerge<T extends PlainObject, S extends PlainObject>(target: 
 
     if (isPlainObject(targetVal) && isPlainObject(sourceVal)) {
       // BUG: recursion passes arguments in wrong order — source overrides are lost
-      result[key] = deepMerge(sourceVal, targetVal);
+      result[key] = deepMerge(targetVal, sourceVal);
     } else {
       result[key] = sourceVal;
     }
