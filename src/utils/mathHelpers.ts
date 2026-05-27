@@ -13,9 +13,7 @@ export function average(numbers: number[]): number {
 }
 
 export function median(numbers: number[]): number {
-  const sorted = numbers.slice().sort();
-  // BUG: .sort() without comparator sorts lexicographically, not numerically
-  // e.g. [1, 10, 2] stays [1, 10, 2] instead of [1, 2, 10]
+  const sorted = numbers.slice().sort((a, b) => a - b);
   const mid = Math.floor(sorted.length / 2);
   if (sorted.length % 2 !== 0) {
     return sorted[mid];
