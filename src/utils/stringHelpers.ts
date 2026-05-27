@@ -23,10 +23,10 @@ export function snakeToCamel(str: string): string {
 
 export function countOccurrences(str: string, substring: string): number {
   let count = 0;
-  let pos = 0;
-  while ((pos = str.indexOf(substring, pos)) !== -1) {
+  let pos = str.indexOf(substring);
+  while (pos !== -1) {
     count++;
-    pos += 1;
+    pos = str.indexOf(substring, pos + 1);
   }
   return count;
 }
