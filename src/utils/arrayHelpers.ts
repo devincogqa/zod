@@ -27,10 +27,7 @@ export function flatten<T>(arr: T[][]): T[] {
   return arr.reduce((acc, val) => acc.concat(val), []);
 }
 
-export function partition<T>(
-  arr: T[],
-  predicate: (item: T) => boolean
-): [T[], T[]] {
+export function partition<T>(arr: T[], predicate: (item: T) => boolean): [T[], T[]] {
   const pass: T[] = [];
   const fail: T[] = [];
   for (const item of arr) {
