@@ -8,6 +8,7 @@ export function uniqueBy<T>(arr: T[], keyFn: (item: T) => string): T[] {
   for (const item of arr) {
     const key = keyFn(item);
     if (!seen.has(key)) {
+      seen.add(key);
       result.push(item);
     }
     // BUG: forgot to add key to `seen` set, so duplicates are never filtered
