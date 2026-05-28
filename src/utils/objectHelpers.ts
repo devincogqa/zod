@@ -8,10 +8,7 @@ export function deepClone<T>(obj: T): T {
 }
 
 /** Pick specified keys from an object. */
-export function pick<T extends Record<string, unknown>, K extends keyof T>(
-  obj: T,
-  keys: K[]
-): Pick<T, K> {
+export function pick<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
   const result = {} as Pick<T, K>;
   for (const key of keys) {
     if (key in obj) {
@@ -22,10 +19,7 @@ export function pick<T extends Record<string, unknown>, K extends keyof T>(
 }
 
 /** Omit specified keys from an object. */
-export function omit<T extends Record<string, unknown>, K extends keyof T>(
-  obj: T,
-  keys: K[]
-): Omit<T, K> {
+export function omit<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
   const result = { ...obj };
   for (const key of keys) {
     delete result[key];
@@ -34,9 +28,6 @@ export function omit<T extends Record<string, unknown>, K extends keyof T>(
 }
 
 /** Merge two objects shallowly. */
-export function shallowMerge<A extends object, B extends object>(
-  a: A,
-  b: B
-): A & B {
+export function shallowMerge<A extends object, B extends object>(a: A, b: B): A & B {
   return { ...a, ...b };
 }
