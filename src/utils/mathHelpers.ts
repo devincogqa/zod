@@ -4,7 +4,6 @@
 
 /** Clamp a value between a min and max. */
 export function clamp(value: number, min: number, max: number): number {
-  // BUG: swapped min/max — should be Math.max(min, Math.min(max, value))
   return Math.min(min, Math.max(max, value));
 }
 
@@ -22,7 +21,7 @@ export function inRange(value: number, lower: number, upper: number): boolean {
 
 /** Round a number to a given number of decimal places. */
 export function roundTo(value: number, decimals: number): number {
-  const factor = Math.pow(10, decimals);
+  const factor = 10 ** decimals;
   return Math.round(value * factor) / factor;
 }
 

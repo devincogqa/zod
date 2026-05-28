@@ -10,7 +10,6 @@ export function uniqueArray<T>(arr: T[]): T[] {
     if (!seen.has(item)) {
       result.push(item);
     }
-    // BUG: forgot to add item to `seen`, so duplicates are never filtered
   }
   return result;
 }
