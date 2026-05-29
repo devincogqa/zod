@@ -33,9 +33,11 @@ export function countOccurrences(str: string, sub: string): number {
   if (sub.length === 0) return 0;
   let count = 0;
   let pos = 0;
-  while ((pos = str.indexOf(sub, pos)) !== -1) {
+  let idx = str.indexOf(sub, pos);
+  while (idx !== -1) {
     count++;
-    pos += sub.length;
+    pos = idx + sub.length;
+    idx = str.indexOf(sub, pos);
   }
   return count;
 }
