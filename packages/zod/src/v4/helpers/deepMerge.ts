@@ -51,7 +51,7 @@ export function deepClone<T>(obj: T): T {
 }
 
 export function mergeDefaults<T extends PlainObject>(value: Partial<T>, defaults: T): T {
-  return deepMerge(value as T, defaults);
+  return deepMerge(defaults, value);
 }
 
 export function pick<T extends PlainObject, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
