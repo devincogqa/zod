@@ -11,7 +11,7 @@ export class CacheStore<T> {
   private cache: Map<string, CacheEntry<T>>;
   private readonly defaultTTL: number;
 
-  constructor(defaultTTL: number = 60000) {
+  constructor(defaultTTL = 60000) {
     this.cache = new Map();
     this.defaultTTL = defaultTTL;
   }
@@ -31,6 +31,15 @@ export class CacheStore<T> {
   set(key: string, value: T, ttl?: number): void {
     const expiresAt = Date.now() + (ttl ?? this.defaultTTL);
     this.cache.set(key, { value, expiresAt });
+  }
+
+  getOrSet(key: string, factory: () => T, ttl?: number): T {
+    const existing = this.get(key);
+    if (existing) return existing;
+
+    const value = factory();
+    this.set(key, value, ttl);
+    return value;
   }
 
   has(key: string): boolean {
