@@ -25,7 +25,7 @@ export async function retry<T>(
     } catch (error) {
       lastError = error instanceof Error ? error : new Error(String(error));
       if (attempt < maxRetries) {
-        const delay = Math.min(baseDelay * Math.pow(2, attempt), maxDelay);
+        const delay = Math.min(baseDelay * 2 ** attempt, maxDelay);
         await sleep(delay);
       }
     }
@@ -37,10 +37,7 @@ export async function retry<T>(
 /**
  * Run promises in parallel with a concurrency limit
  */
-export async function parallelLimit<T>(
-  tasks: (() => Promise<T>)[],
-  limit: number
-): Promise<T[]> {
+export async function parallelLimit<T>(tasks: (() => Promise<T>)[], limit: number): Promise<T[]> {
   const results: T[] = [];
   const executing: Promise<void>[] = [];
 

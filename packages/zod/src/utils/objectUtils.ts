@@ -12,10 +12,7 @@ export function deepClone<T>(obj: T): T {
 /**
  * Pick specific keys from an object
  */
-export function pick<T extends Record<string, unknown>, K extends keyof T>(
-  obj: T,
-  keys: K[]
-): Pick<T, K> {
+export function pick<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
   const result = {} as Pick<T, K>;
   for (const key of keys) {
     if (key in obj) {
@@ -28,10 +25,7 @@ export function pick<T extends Record<string, unknown>, K extends keyof T>(
 /**
  * Omit specific keys from an object
  */
-export function omit<T extends Record<string, unknown>, K extends keyof T>(
-  obj: T,
-  keys: K[]
-): Omit<T, K> {
+export function omit<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
   const result = { ...obj };
   for (const key of keys) {
     delete result[key];
@@ -49,24 +43,13 @@ export function isEmpty(obj: Record<string, unknown>): boolean {
 /**
  * Merge two objects deeply
  */
-export function deepMerge<T extends Record<string, unknown>>(
-  target: T,
-  source: Partial<T>
-): T {
+export function deepMerge<T extends Record<string, unknown>>(target: T, source: Partial<T>): T {
   const result = { ...target };
   for (const key of Object.keys(source) as Array<keyof T>) {
     const sourceVal = source[key];
     const targetVal = result[key];
-    if (
-      typeof sourceVal === "object" &&
-      sourceVal !== null &&
-      typeof targetVal === "object" &&
-      targetVal !== null
-    ) {
-      result[key] = deepMerge(
-        targetVal as Record<string, unknown>,
-        sourceVal as Record<string, unknown>
-      ) as T[keyof T];
+    if (typeof sourceVal === "object" && sourceVal !== null && typeof targetVal === "object" && targetVal !== null) {
+      result[key] = deepMerge(targetVal as Record<string, unknown>, sourceVal as Record<string, unknown>) as T[keyof T];
     } else {
       result[key] = sourceVal as T[keyof T];
     }

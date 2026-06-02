@@ -35,9 +35,7 @@ export class NetworkError extends Error {
 /**
  * Wrap an async function to catch and return errors as a result tuple
  */
-export async function tryCatch<T>(
-  fn: () => Promise<T>
-): Promise<[T, null] | [null, Error]> {
+export async function tryCatch<T>(fn: () => Promise<T>): Promise<[T, null] | [null, Error]> {
   try {
     const result = await fn();
     return [result, null];
@@ -74,10 +72,7 @@ export function assert(condition: boolean, message: string): asserts condition {
 /**
  * Ensure a value is not null or undefined
  */
-export function ensureNotNull<T>(
-  value: T | null | undefined,
-  name: string = "value"
-): T {
+export function ensureNotNull<T>(value: T | null | undefined, name = "value"): T {
   if (value === null || value === undefined) {
     throw new Error(`Expected ${name} to be defined, but got ${value}`);
   }

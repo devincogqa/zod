@@ -28,9 +28,7 @@ export function isFunction(value: unknown): value is (...args: unknown[]) => unk
 /**
  * Check if a value is a primitive type
  */
-export function isPrimitive(
-  value: unknown
-): value is string | number | boolean | null | undefined | symbol | bigint {
+export function isPrimitive(value: unknown): value is string | number | boolean | null | undefined | symbol | bigint {
   return value === null || (typeof value !== "object" && typeof value !== "function");
 }
 

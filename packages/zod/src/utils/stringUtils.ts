@@ -43,7 +43,7 @@ export function isValidEmail(email: string): boolean {
 /**
  * Pad a string on the left with a given character
  */
-export function padLeft(str: string, length: number, char: string = " "): string {
+export function padLeft(str: string, length: number, char = " "): string {
   while (str.length < length) {
     str = char + str;
   }

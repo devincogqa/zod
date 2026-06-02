@@ -14,7 +14,7 @@ export class SimpleCache<T> {
   private cache: Map<string, CacheEntry<T>> = new Map();
   private defaultTTL: number;
 
-  constructor(defaultTTLMs: number = 60000) {
+  constructor(defaultTTLMs = 60000) {
     this.defaultTTL = defaultTTLMs;
   }
 
