@@ -17,7 +17,7 @@ export function daysInMonth(year: number, month: number): number {
   if (month === 2 && isLeapYear(year)) {
     return 29;
   }
-  return days[month];
+  return days[month - 1];
 }
 
 /**
