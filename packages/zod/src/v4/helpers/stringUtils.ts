@@ -15,6 +15,13 @@ export function capitalize(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+export function titleCase(str: string): string {
+  return str
+    .split(" ")
+    .map((word) => capitalize(word))
+    .join(" ");
+}
+
 export function camelToSnake(str: string): string {
   return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
 }
@@ -32,4 +39,8 @@ export function pluralize(word: string, count: number): string {
     return word + "es";
   }
   return word + "s";
+}
+
+export function normalizeWhitespace(str: string): string {
+  return str.replace(/\s+/g, " ").trim();
 }

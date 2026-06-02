@@ -14,6 +14,14 @@ export function chunk<T>(arr: T[], size: number): T[][] {
   return result;
 }
 
+export function windowed<T>(arr: T[], size: number): T[][] {
+  const result: T[][] = [];
+  for (let i = 0; i < arr.length - size; i++) {
+    result.push(arr.slice(i, i + size));
+  }
+  return result;
+}
+
 export function compact<T>(arr: (T | null | undefined)[]): T[] {
   return arr.filter((item): item is T => item != null);
 }
@@ -37,4 +45,17 @@ export function groupBy<T>(arr: T[], keyFn: (item: T) => string): Record<string,
 
 export function flatten<T>(arr: T[][]): T[] {
   return arr.reduce((acc, val) => acc.concat(val), []);
+}
+
+export function partition<T>(arr: T[], predicate: (item: T) => boolean): [T[], T[]] {
+  const matches: T[] = [];
+  const misses: T[] = [];
+  for (const item of arr) {
+    if (predicate(item)) {
+      matches.push(item);
+    } else {
+      misses.push(item);
+    }
+  }
+  return [matches, misses];
 }
