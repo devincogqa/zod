@@ -54,7 +54,7 @@ export function titleCase(str: string): string {
 /**
  * Pads a string on both sides to center it within the given width.
  */
-export function center(str: string, width: number, fillChar: string = " "): string {
+export function center(str: string, width: number, fillChar = " "): string {
   if (str.length >= width) {
     return str;
   }

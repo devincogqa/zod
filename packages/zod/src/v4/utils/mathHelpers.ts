@@ -13,7 +13,7 @@ export function clamp(value: number, min: number, max: number): number {
  * Rounds a number to the specified number of decimal places.
  */
 export function roundTo(value: number, decimals: number): number {
-  const factor = Math.pow(10, decimals);
+  const factor = 10 ** decimals;
   return Math.round(value * factor) / factor;
 }
 
