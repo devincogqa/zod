@@ -24,7 +24,7 @@ export class SimpleCache<T> {
    */
   set(key: string, value: T, ttl?: number): void {
     const effectiveTTL = ttl ?? this.defaultTTL;
-    const expiresAt = Date.now() + effectiveTTL / 1000;
+    const expiresAt = Date.now() + effectiveTTL;
     this.cache.set(key, { value, expiresAt });
   }
 
