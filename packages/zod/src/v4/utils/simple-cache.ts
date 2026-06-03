@@ -15,7 +15,7 @@ export class SimpleCache<T> {
    * Creates a new SimpleCache instance.
    * @param defaultTTL - Default time-to-live in milliseconds.
    */
-  constructor(defaultTTL: number = 60000) {
+  constructor(defaultTTL = 60000) {
     this.defaultTTL = defaultTTL;
   }
 

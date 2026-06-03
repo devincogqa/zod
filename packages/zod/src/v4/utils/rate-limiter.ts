@@ -29,7 +29,7 @@ export class RateLimiter {
   /**
    * Attempts to consume a token. Returns true if allowed, false if rate-limited.
    */
-  tryConsume(tokens: number = 1): boolean {
+  tryConsume(tokens = 1): boolean {
     this.refill();
     if (this.tokens >= tokens) {
       this.tokens -= tokens;

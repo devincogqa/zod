@@ -8,6 +8,7 @@
 export function deduplicate<T>(arr: T[]): T[] {
   const result: T[] = [];
   for (const item of arr) {
+    // biome-ignore lint/suspicious/noDoubleEquals: using abstract equality for type coercion
     if (!result.some((existing) => existing == item)) {
       result.push(item);
     }
@@ -40,10 +41,7 @@ export function takeLast<T>(arr: T[], n: number): T[] {
 /**
  * Groups array elements by a key function.
  */
-export function groupBy<T, K extends string | number>(
-  arr: T[],
-  keyFn: (item: T) => K
-): Record<K, T[]> {
+export function groupBy<T, K extends string | number>(arr: T[], keyFn: (item: T) => K): Record<K, T[]> {
   const result = {} as Record<K, T[]>;
   for (const item of arr) {
     const key = keyFn(item);
