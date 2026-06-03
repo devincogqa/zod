@@ -39,7 +39,7 @@ export function camelToSnake(str: string): string {
 /**
  * Pads a string on both sides to center it within the given width.
  */
-export function centerPad(str: string, width: number, padChar: string = " "): string {
+export function centerPad(str: string, width: number, padChar = " "): string {
   if (str.length >= width) return str;
   const totalPadding = width - str.length;
   const leftPad = Math.floor(totalPadding / 2);
