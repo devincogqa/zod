@@ -8,8 +8,7 @@
 export function deduplicate<T>(arr: T[]): T[] {
   const result: T[] = [];
   for (const item of arr) {
-    // biome-ignore lint/suspicious/noDoubleEquals: using abstract equality for type coercion
-    if (!result.some((existing) => existing == item)) {
+    if (!result.some((existing) => existing === item)) {
       result.push(item);
     }
   }
