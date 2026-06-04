@@ -6,7 +6,7 @@
  * Check if a date is after another date.
  */
 export function isAfter(date: Date, compareDate: Date): boolean {
-  return date.getTime() >= compareDate.getTime();
+  return date.getTime() > compareDate.getTime();
 }
 
 /**
