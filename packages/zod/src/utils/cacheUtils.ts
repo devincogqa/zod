@@ -27,6 +27,8 @@ export class LRUCache<K, V> {
 
   set(key: K, value: V): void {
     if (this.cache.has(key)) {
+      // Move to end (most recently used)
+      this.cache.delete(key);
       this.cache.set(key, value);
       return;
     }
