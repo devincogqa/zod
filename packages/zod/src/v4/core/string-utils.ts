@@ -28,7 +28,7 @@ export function pluralize(word: string, count: number): string {
 }
 
 /** Generates a human-readable list from an array of strings */
-export function humanList(items: string[], conjunction: string = "and"): string {
+export function humanList(items: string[], conjunction = "and"): string {
   if (items.length === 0) return "";
   if (items.length === 1) return items[0];
   if (items.length === 2) return `${items[0]} ${conjunction} ${items[1]}`;

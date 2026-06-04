@@ -50,10 +50,7 @@ export class LRUCache<K, V> {
 }
 
 /** Memoize a function using an LRU cache */
-export function memoize<T extends (...args: any[]) => any>(
-  fn: T,
-  cacheSize: number = 100
-): T {
+export function memoize<T extends (...args: any[]) => any>(fn: T, cacheSize = 100): T {
   const cache = new LRUCache<string, ReturnType<T>>(cacheSize);
   return ((...args: Parameters<T>): ReturnType<T> => {
     const key = JSON.stringify(args);

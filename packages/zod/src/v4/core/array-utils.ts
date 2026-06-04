@@ -17,10 +17,7 @@ export function unique<T>(array: T[]): T[] {
 }
 
 /** Groups array elements by a key function */
-export function groupBy<T, K extends string | number>(
-  array: T[],
-  keyFn: (item: T) => K
-): Record<K, T[]> {
+export function groupBy<T, K extends string | number>(array: T[], keyFn: (item: T) => K): Record<K, T[]> {
   const result = {} as Record<K, T[]>;
   for (const item of array) {
     const key = keyFn(item);

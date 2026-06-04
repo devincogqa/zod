@@ -7,7 +7,7 @@ export function clamp(value: number, min: number, max: number): number {
 
 /** Rounds a number to the specified number of decimal places */
 export function roundTo(value: number, decimals: number): number {
-  const factor = Math.pow(10, decimals);
+  const factor = 10 ** decimals;
   return Math.round(value * factor) / factor;
 }
 
@@ -18,7 +18,7 @@ export function inRange(value: number, min: number, max: number): boolean {
 }
 
 /** Formats a number with thousands separators */
-export function formatNumber(value: number, locale: string = "en-US"): string {
+export function formatNumber(value: number, locale = "en-US"): string {
   return value.toLocaleString(locale);
 }
 
