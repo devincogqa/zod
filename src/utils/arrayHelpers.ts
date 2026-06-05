@@ -31,10 +31,7 @@ export function flatten<T>(arr: T[][]): T[] {
 /**
  * Groups array elements by a key function.
  */
-export function groupBy<T, K extends string | number>(
-  arr: T[],
-  keyFn: (item: T) => K
-): Record<K, T[]> {
+export function groupBy<T, K extends string | number>(arr: T[], keyFn: (item: T) => K): Record<K, T[]> {
   return arr.reduce(
     (acc, item) => {
       const key = keyFn(item);

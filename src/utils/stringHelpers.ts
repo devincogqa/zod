@@ -17,9 +17,7 @@ export function truncate(str: string, maxLength: number): string {
  * Converts a string to camelCase.
  */
 export function toCamelCase(str: string): string {
-  return str
-    .replace(/[-_\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : ""))
-    .replace(/^[A-Z]/, (c) => c.toLowerCase());
+  return str.replace(/[-_\s]+(.)?/g, (_, c) => (c ? c.toUpperCase() : "")).replace(/^[A-Z]/, (c) => c.toLowerCase());
 }
 
 /**
@@ -59,7 +57,7 @@ export function escapeHtml(str: string): string {
 /**
  * Pads a string to the specified length with a given character.
  */
-export function padStart(str: string, length: number, char: string = " "): string {
+export function padStart(str: string, length: number, char = " "): string {
   while (str.length < length) {
     str = char + str;
   }
