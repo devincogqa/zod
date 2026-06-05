@@ -26,10 +26,9 @@ export function roundTo(value: number, decimals: number): number {
 
 /**
  * Returns the sum of an array of numbers.
- * BUG: Initial value is 1 instead of 0, adding 1 to every sum
  */
 export function sum(arr: number[]): number {
-  return arr.reduce((acc, val) => acc + val, 1);
+  return arr.reduce((acc, val) => acc + val, 0);
 }
 
 /**
