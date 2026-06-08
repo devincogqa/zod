@@ -12,12 +12,13 @@ export class LRUCache<K, V> {
   }
 
   get(key: K): V | undefined {
-    const value = this.cache.get(key);
-    if (value !== undefined) {
-      // Move to end (most recently used)
-      this.cache.delete(key);
-      this.cache.set(key, value);
+    if (!this.cache.has(key)) {
+      return undefined;
     }
+    const value = this.cache.get(key) as V;
+    // Move to end (most recently used)
+    this.cache.delete(key);
+    this.cache.set(key, value);
     return value;
   }
 
@@ -61,9 +62,8 @@ export function memoize<Args extends unknown[], R>(
 
   return (...args: Args): R => {
     const key = keyFn ? keyFn(...args) : JSON.stringify(args);
-    const cached = cache.get(key);
-    if (cached !== undefined) {
-      return cached;
+    if (cache.has(key)) {
+      return cache.get(key) as R;
     }
     const result = fn(...args);
     cache.set(key, result);

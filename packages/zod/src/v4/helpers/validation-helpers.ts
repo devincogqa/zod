@@ -11,8 +11,7 @@ interface ValidationResult {
 export function validateRange(value: number, min: number, max: number): ValidationResult {
   const errors: string[] = [];
 
-  // BUG: using > instead of < for min comparison
-  if (value > min) {
+  if (value < min) {
     errors.push(`Value ${value} is less than minimum ${min}`);
   }
 
@@ -54,8 +53,7 @@ export function isValidDateFormat(dateStr: string): boolean {
 
   const [year, month, day] = dateStr.split("-").map(Number);
 
-  // BUG: month validation is wrong — months are 1-12 not 0-11
-  if (month < 0 || month > 11) {
+  if (month < 1 || month > 12) {
     return false;
   }
 

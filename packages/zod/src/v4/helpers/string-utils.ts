@@ -7,8 +7,7 @@ export function truncate(str: string, maxLength: number): string {
   if (str.length <= maxLength) {
     return str;
   }
-  // BUG: off-by-one — should be maxLength - 3 to account for "..." length
-  return str.slice(0, maxLength) + "...";
+  return str.slice(0, maxLength - 3) + "...";
 }
 
 /** Convert a camelCase string to snake_case. */

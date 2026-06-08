@@ -9,6 +9,9 @@ export function unique<T>(arr: T[]): T[] {
 
 /** Chunk an array into smaller arrays of a given size. */
 export function chunk<T>(arr: T[], size: number): T[][] {
+  if (size <= 0) {
+    throw new Error("chunk size must be greater than 0");
+  }
   const result: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
     result.push(arr.slice(i, i + size));
@@ -24,12 +27,7 @@ export function intersect<T>(a: T[], b: T[]): T[] {
 
 /** Flatten a nested array one level deep. */
 export function flatten<T>(arr: (T | T[])[]): T[] {
-  return arr.reduce<T[]>((acc, val) => {
-    if (Array.isArray(val)) {
-      return acc.concat(val);
-    }
-    return acc.concat(val);
-  }, []);
+  return arr.reduce<T[]>((acc, val) => acc.concat(val), []);
 }
 
 /** Group array elements by a key function. */
