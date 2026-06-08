@@ -54,7 +54,7 @@ export class LRUCache<K, V> {
 /** Create a memoized version of a function using LRU cache. */
 export function memoize<Args extends unknown[], R>(
   fn: (...args: Args) => R,
-  options: { maxSize?: number; keyFn?: (...args: Args) => string } = {},
+  options: { maxSize?: number; keyFn?: (...args: Args) => string } = {}
 ): (...args: Args) => R {
   const { maxSize = 100, keyFn } = options;
   const cache = new LRUCache<string, R>(maxSize);
