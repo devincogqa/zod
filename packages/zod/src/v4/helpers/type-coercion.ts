@@ -2,9 +2,7 @@
  * Type coercion utilities for transforming input values.
  */
 
-export type CoercionResult<T> =
-  | { success: true; value: T }
-  | { success: false; error: string };
+export type CoercionResult<T> = { success: true; value: T } | { success: false; error: string };
 
 /** Coerce a value to a number. */
 export function toNumber(value: unknown): CoercionResult<number> {
@@ -66,7 +64,7 @@ export function toDate(value: unknown): CoercionResult<Date> {
 }
 
 /** Coerce a value to a string. */
-export function toString(value: unknown): CoercionResult<string> {
+export function coerceToString(value: unknown): CoercionResult<string> {
   if (typeof value === "string") {
     return { success: true, value };
   }
