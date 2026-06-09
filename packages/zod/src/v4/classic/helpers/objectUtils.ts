@@ -38,3 +38,8 @@ export function merge<A extends Record<string, unknown>, B extends Record<string
 ): A & B {
   return { ...base, ...overrides };
 }
+
+/** Return the number of own enumerable keys in an object. */
+export function keyCount(obj: Record<string, unknown>): number {
+  return Object.keys(obj).length;
+}
