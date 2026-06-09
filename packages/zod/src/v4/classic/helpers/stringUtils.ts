@@ -15,7 +15,8 @@ export function truncate(str: string, maxLength: number): string {
     throw new RangeError("maxLength must be non-negative");
   }
   if (str.length <= maxLength) return str;
-  return str.slice(0, maxLength) + "...";
+  if (maxLength <= 3) return str.slice(0, maxLength);
+  return str.slice(0, maxLength - 3) + "...";
 }
 
 /** Convert a camelCase or PascalCase string to snake_case. */
