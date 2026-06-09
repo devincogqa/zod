@@ -46,3 +46,8 @@ export function flatten<T>(arr: readonly (T | readonly T[])[]): T[] {
 export function last<T>(arr: readonly T[]): T | undefined {
   return arr[arr.length - 1];
 }
+
+/** Return the first element of an array, or undefined if empty. */
+export function first<T>(arr: readonly T[]): T | undefined {
+  return arr[0];
+}
