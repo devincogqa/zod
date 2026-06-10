@@ -1,5 +1,6 @@
 /**
  * Utility helpers for common array operations used across Zod internals.
+ * @module arrayHelpers
  */
 
 /** Remove duplicate values from an array. */
