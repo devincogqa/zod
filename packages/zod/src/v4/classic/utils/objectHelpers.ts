@@ -1,5 +1,6 @@
 /**
  * Object utility helpers for schema processing.
+ * @module objectHelpers
  */
 
 /** Deep-clone a plain object using JSON serialization. */
