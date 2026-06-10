@@ -41,7 +41,7 @@ export function flattenOnce<T>(arr: (T | T[])[]): T[] {
   return result;
 }
 
-/** Return the intersection of two arrays. */
+/** Return the intersection of two arrays (elements present in both). */
 export function intersect<T>(a: T[], b: T[]): T[] {
   const setB = new Set(b);
   return a.filter((item) => setB.has(item));
