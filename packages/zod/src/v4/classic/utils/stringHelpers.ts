@@ -1,5 +1,6 @@
 /**
  * String utility helpers for validation message formatting.
+ * @module stringHelpers
  */
 
 /** Capitalize the first character of a string. */
