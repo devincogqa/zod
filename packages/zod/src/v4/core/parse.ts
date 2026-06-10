@@ -75,7 +75,7 @@ export const safeParse: $SafeParse = /* @__PURE__*/ _safeParse(errors.$ZodRealEr
 export function isSafeParseSuccess<T>(
   result: util.SafeParseResult<T>
 ): result is Extract<util.SafeParseResult<T>, { success: true }> {
-  return result.success && Boolean(result.data);
+  return result.success;
 }
 
 export type $SafeParseAsync = <T extends schemas.$ZodType>(
