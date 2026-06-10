@@ -1,5 +1,6 @@
 /**
  * Simple LRU cache for memoizing expensive schema computations.
+ * @module cacheHelpers
  */
 
 export class LRUCache<K, V> {
