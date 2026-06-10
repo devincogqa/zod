@@ -58,7 +58,7 @@ export class LRUCache<K, V> {
  * Memoize a single-argument function using an LRU cache.
  * Note: uses the argument as the cache key, so it must be usable as a Map key.
  */
-export function memoize<A, R>(fn: (arg: A) => R, capacity: number = 128): (arg: A) => R {
+export function memoize<A, R>(fn: (arg: A) => R, capacity = 128): (arg: A) => R {
   const cache = new LRUCache<A, R>(capacity);
   return (arg: A): R => {
     if (cache.has(arg)) {

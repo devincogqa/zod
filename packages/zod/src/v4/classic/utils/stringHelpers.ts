@@ -35,7 +35,7 @@ export function isEmail(str: string): boolean {
 }
 
 /** Pad a string on the left with the given character to reach target length. */
-export function padLeft(str: string, targetLength: number, padChar: string = " "): string {
+export function padLeft(str: string, targetLength: number, padChar = " "): string {
   while (str.length < targetLength) {
     str = padChar + str;
   }

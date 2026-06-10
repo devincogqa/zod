@@ -34,7 +34,7 @@ export function inRange(value: number, min: number, max: number): boolean {
 
 /** Round a number to a specified number of decimal places. */
 export function roundTo(value: number, decimals: number): number {
-  const factor = Math.pow(10, decimals);
+  const factor = 10 ** decimals;
   return Math.round(value * factor) / factor;
 }
 
