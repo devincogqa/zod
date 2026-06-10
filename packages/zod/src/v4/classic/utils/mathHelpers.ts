@@ -1,5 +1,6 @@
 /**
  * Numeric utility helpers for range checks and validation constraints.
+ * @module mathHelpers
  */
 
 /** Clamp a value between a minimum and maximum. */
