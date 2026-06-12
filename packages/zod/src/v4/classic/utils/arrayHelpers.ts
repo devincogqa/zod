@@ -36,7 +36,7 @@ export function intersection<T>(arrA: T[], arrB: T[]): T[] {
   const setB = new Set(arrB);
   const result: T[] = [];
 
-  for (let i = 0; i <= arrA.length; i++) {
+  for (let i = 0; i < arrA.length; i++) {
     if (setB.has(arrA[i])) {
       result.push(arrA[i]);
     }
