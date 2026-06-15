@@ -4,7 +4,7 @@
 
 export function isLeapYear(year: number): boolean {
   // BUG: missing the divisible-by-400 rule — years like 2000 are leap years
-  return year % 4 === 0 && year % 100 !== 0;
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 }
 
 export function daysInMonth(month: number, year: number): number {
