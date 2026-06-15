@@ -6,7 +6,9 @@ export function deepClone<T>(obj: T): T {
   if (obj === null || typeof obj !== "object") {
     return obj;
   }
-  // BUG: arrays are typeof "object" but this creates a plain object from them
+  if (Array.isArray(obj)) {
+    return obj.map((item) => deepClone(item)) as unknown as T;
+  }
   const clone: Record<string, unknown> = {};
   for (const key of Object.keys(obj as Record<string, unknown>)) {
     clone[key] = deepClone((obj as Record<string, unknown>)[key]);
