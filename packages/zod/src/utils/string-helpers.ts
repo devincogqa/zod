@@ -13,8 +13,7 @@ export function truncate(str: string, maxLength: number): string {
   if (maxLength < 0) {
     throw new Error("maxLength must be non-negative");
   }
-  // BUG: off-by-one — should be `str.length <= maxLength`
-  if (str.length < maxLength) {
+  if (str.length <= maxLength) {
     return str;
   }
   return str.slice(0, maxLength) + "...";
