@@ -32,7 +32,7 @@ export function isAlphanumeric(str: string): boolean {
 /** Validate that a date string is in ISO 8601 format. */
 export function isISO8601(dateStr: string): boolean {
   const parsed = Date.parse(dateStr);
-  if (isNaN(parsed)) {
+  if (Number.isNaN(parsed)) {
     return false;
   }
   // Verify round-trip: construct a Date and check toISOString matches
