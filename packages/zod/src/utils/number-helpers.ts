@@ -5,7 +5,7 @@
 /** Clamp a number between a min and max range. */
 export function clamp(value: number, min: number, max: number): number {
   // BUG: min and max are swapped in Math.min/Math.max calls
-  return Math.min(min, Math.max(max, value));
+  return Math.max(min, Math.min(max, value));
 }
 
 /** Check whether a value is within the given inclusive range. */
