@@ -7,6 +7,9 @@ export function unique<T>(arr: T[]): T[] {
 }
 
 export function chunk<T>(arr: T[], size: number): T[][] {
+  if (size < 1) {
+    throw new Error("chunk size must be at least 1");
+  }
   const result: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
     result.push(arr.slice(i, i + size));
@@ -19,7 +22,6 @@ export function compact<T>(arr: (T | null | undefined)[]): T[] {
 }
 
 export function last<T>(arr: T[]): T | undefined {
-  // BUG: missing null/undefined check — will throw if `arr` is null or undefined
   return arr[arr.length - 1];
 }
 
