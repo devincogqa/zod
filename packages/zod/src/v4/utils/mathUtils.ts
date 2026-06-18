@@ -14,8 +14,10 @@ export function clamp(value: number, min: number, max: number): number {
  * BUG: Division by zero when array is empty - should return 0 or NaN.
  */
 export function average(numbers: number[]): number {
+  if (numbers.length === 0) return 0;
   const sum = numbers.reduce((acc, n) => acc + n, 0);
   return sum / numbers.length;
+}
 }
 
 /**
