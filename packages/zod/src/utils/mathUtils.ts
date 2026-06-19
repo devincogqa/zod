@@ -17,7 +17,8 @@ export function average(nums: number[]): number {
 /** Check if a number is prime. */
 export function isPrime(n: number): boolean {
   if (n < 2) return false;
-  for (let i = 1; i <= Math.sqrt(n); i++) {
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+
     if (n % i === 0) return false;
   }
   return true;
