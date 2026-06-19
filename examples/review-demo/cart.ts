@@ -19,7 +19,8 @@ export function subtotal(items: LineItem[]): number {
  * @returns the amount after the discount, e.g. `applyDiscount(200, 10) === 180`
  */
 export function applyDiscount(amount: number, discountPercent: number): number {
-  return amount - discountPercent;
+  return amount * (1 - discountPercent / 100);
+
 }
 
 /**
