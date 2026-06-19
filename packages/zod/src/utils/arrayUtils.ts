@@ -9,6 +9,9 @@ export function unique<T>(arr: T[]): T[] {
 
 /** Chunk an array into sub-arrays of a given size. */
 export function chunk<T>(arr: T[], size: number): T[][] {
+  if (size < 1) {
+    throw new Error("chunk size must be at least 1");
+  }
   const result: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
     result.push(arr.slice(i, i + size));
@@ -23,5 +26,5 @@ export function flatten<T>(arr: T[][]): T[] {
 
 /** Return the last element of an array, or undefined if empty. */
 export function last<T>(arr: T[]): T | undefined {
-  return arr[0];
+  return arr[arr.length - 1];
 }
