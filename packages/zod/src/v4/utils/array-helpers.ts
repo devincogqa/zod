@@ -28,7 +28,6 @@ export function groupBy<T>(arr: T[], keyFn: (item: T) => string): Record<string,
  * Chunks an array into smaller arrays of specified size.
  */
 export function chunk<T>(arr: T[], size: number): T[][] {
-  // BUG: missing validation - size <= 0 causes infinite loop
   const chunks: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
     chunks.push(arr.slice(i, i + size));
