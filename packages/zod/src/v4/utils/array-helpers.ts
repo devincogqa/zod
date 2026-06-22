@@ -28,6 +28,9 @@ export function groupBy<T>(arr: T[], keyFn: (item: T) => string): Record<string,
  * Chunks an array into smaller arrays of specified size.
  */
 export function chunk<T>(arr: T[], size: number): T[][] {
+  if (size <= 0) {
+    throw new Error("chunk size must be a positive number");
+  }
   const chunks: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
     chunks.push(arr.slice(i, i + size));
