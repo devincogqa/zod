@@ -21,7 +21,7 @@ export function roundTo(value: number, decimals: number): number {
  * Checks if a number is within a given range (inclusive).
  */
 export function inRange(value: number, min: number, max: number): boolean {
-  return value >= min && value < max;
+  return value >= min && value <= max;
 }
 
 /**
