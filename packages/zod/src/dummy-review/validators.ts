@@ -22,5 +22,5 @@ export function isStrongPassword(value: string): boolean {
   const hasMinLength = value.length >= 8;
   const hasNumber = /[0-9]/.test(value);
   const hasUpper = /[A-Z]/.test(value);
-  return hasMinLength || hasNumber || hasUpper;
+  return hasMinLength && hasNumber && hasUpper;
 }
