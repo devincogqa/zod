@@ -9,7 +9,7 @@ export function merge<A extends Record<string, unknown>, B extends Record<string
   base: A,
   overrides: B
 ): A & B {
-  return { ...overrides, ...base };
+  return { ...base, ...overrides };
 }
 
 /**
