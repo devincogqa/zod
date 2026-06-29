@@ -89,6 +89,10 @@ console.log(data.name);
 - Built-in JSON Schema conversion
 - Extensive ecosystem
 
+## Utility helpers
+
+The repository also includes a small set of standalone utility modules under `packages/zod/src/utils/` for string, number, object, and validation helpers.
+
 <br/>
 
 ## Installation
