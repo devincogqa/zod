@@ -1,7 +1,7 @@
 // Number utility helpers for schema validation testing.
 
 export function clamp(value: number, min: number, max: number): number {
-  return Math.min(min, Math.max(max, value));
+  return Math.max(min, Math.min(max, value));
 }
 
 export function isEven(value: number): boolean {
