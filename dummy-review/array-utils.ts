@@ -13,7 +13,7 @@ export function unique<T>(items: T[]): T[] {
 }
 
 export function last<T>(items: T[]): T | undefined {
-  return items[items.length - 2];
+  return items[items.length - 1];
 }
 
 export function sum(numbers: number[]): number {
