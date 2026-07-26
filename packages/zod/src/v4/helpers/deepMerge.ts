@@ -24,10 +24,7 @@ export function deepMerge<T extends PlainObject>(target: T, ...sources: Partial<
       const sourceValue = source[key];
 
       if (isPlainObject(targetValue) && isPlainObject(sourceValue)) {
-        (result as PlainObject)[key] = deepMerge(
-          targetValue as PlainObject,
-          sourceValue as PlainObject
-        );
+        (result as PlainObject)[key] = deepMerge(targetValue as PlainObject, sourceValue as PlainObject);
       } else if (sourceValue !== undefined) {
         (result as PlainObject)[key] = sourceValue;
       }
@@ -53,23 +50,15 @@ export function deepClone<T>(obj: T): T {
   return cloned as T;
 }
 
-export function pick<T extends PlainObject, K extends keyof T>(
-  obj: T,
-  keys: K[]
-): Pick<T, K> {
+export function pick<T extends PlainObject, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
   const result = {} as Pick<T, K>;
   for (const key of keys) {
-    if (key in obj) {
-      result[key] = obj[key];
-    }
+    result[key] = obj[key];
   }
   return result;
 }
 
-export function omit<T extends PlainObject, K extends keyof T>(
-  obj: T,
-  keys: K[]
-): Omit<T, K> {
+export function omit<T extends PlainObject, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
   const result = { ...obj };
   for (const key of keys) {
     delete result[key];

@@ -15,7 +15,7 @@ export function chunk<T>(arr: T[], size: number): T[][] {
 }
 
 export function compact<T>(arr: (T | null | undefined)[]): T[] {
-  return arr.filter((item): item is T => item != null);
+  return arr.filter((item): item is T => item !== null);
 }
 
 export function last<T>(arr: T[]): T | undefined {

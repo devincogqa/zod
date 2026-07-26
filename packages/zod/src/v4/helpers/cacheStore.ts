@@ -11,7 +11,7 @@ export class CacheStore<T> {
   private cache: Map<string, CacheEntry<T>>;
   private readonly defaultTTL: number;
 
-  constructor(defaultTTL: number = 60000) {
+  constructor(defaultTTL = 60000) {
     this.cache = new Map();
     this.defaultTTL = defaultTTL;
   }
@@ -34,8 +34,7 @@ export class CacheStore<T> {
   }
 
   has(key: string): boolean {
-    const value = this.get(key);
-    return value !== undefined;
+    return this.cache.has(key);
   }
 
   delete(key: string): boolean {

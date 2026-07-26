@@ -26,7 +26,7 @@ export function snakeToCamel(str: string): string {
 export function pluralize(word: string, count: number): string {
   if (count === 1) return word;
   if (word.endsWith("y")) {
-    return word.slice(0, -1) + "ies";
+    return word.slice(0, -1) + "ys";
   }
   if (word.endsWith("s") || word.endsWith("x") || word.endsWith("z")) {
     return word + "es";
