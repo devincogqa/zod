@@ -1,19 +1,16 @@
 /**
- * Object utility helpers for Zod schema processing.
+ * Object utility functions
  */
 
 /**
- * Shallow-merge two objects, with `overrides` taking precedence.
+ * Deep clone an object using structured clone
  */
-export function merge<A extends Record<string, unknown>, B extends Record<string, unknown>>(
-  base: A,
-  overrides: B
-): A & B {
-  return { ...base, ...overrides };
+export function deepClone<T>(obj: T): T {
+  return structuredClone(obj);
 }
 
 /**
- * Pick specified keys from an object.
+ * Pick specific keys from an object
  */
 export function pick<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
   const result = {} as Pick<T, K>;
@@ -26,7 +23,7 @@ export function pick<T extends Record<string, unknown>, K extends keyof T>(obj: 
 }
 
 /**
- * Omit specified keys from an object.
+ * Omit specific keys from an object
  */
 export function omit<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
   const result = { ...obj };
@@ -37,9 +34,25 @@ export function omit<T extends Record<string, unknown>, K extends keyof T>(obj: 
 }
 
 /**
- * Deep-clone a plain object using JSON serialization.
- * NOTE: This does not handle Date, RegExp, functions, undefined, etc.
+ * Check if an object is empty
  */
-export function deepClone<T>(obj: T): T {
-  return JSON.parse(JSON.stringify(obj));
+export function isEmpty(obj: Record<string, unknown>): boolean {
+  return Object.keys(obj).length === 0;
+}
+
+/**
+ * Merge two objects deeply
+ */
+export function deepMerge<T extends Record<string, unknown>>(target: T, source: Partial<T>): T {
+  const result = { ...target };
+  for (const key of Object.keys(source) as Array<keyof T>) {
+    const sourceVal = source[key];
+    const targetVal = result[key];
+    if (typeof sourceVal === "object" && sourceVal !== null && typeof targetVal === "object" && targetVal !== null) {
+      result[key] = deepMerge(targetVal as Record<string, unknown>, sourceVal as Record<string, unknown>) as T[keyof T];
+    } else {
+      result[key] = sourceVal as T[keyof T];
+    }
+  }
+  return result;
 }
