@@ -1,6 +1,13 @@
 import * as core from "../core/index.js";
 import * as schemas from "./schemas.js";
 
+/**
+ * Creates a coerced string schema that converts the input value to a string before validation.
+ * Useful for parsing form data, query parameters, or other sources where values may not already be strings.
+ *
+ * @param params - Optional validation parameters or custom error message.
+ * @returns A {@link schemas.ZodMiniString} schema that coerces input to a string.
+ */
 // @__NO_SIDE_EFFECTS__
 export function string<T = unknown>(params?: string | core.$ZodStringParams): schemas.ZodMiniString<T> {
   return core._coercedString(schemas.ZodMiniString, params) as schemas.ZodMiniString<T>;
