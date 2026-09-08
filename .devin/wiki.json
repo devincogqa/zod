@@ -1,0 +1,299 @@
+{
+  "repo_notes": [
+    {
+      "content": ""
+    }
+  ],
+  "pages": [
+    {
+      "title": "Overview",
+      "purpose": "High-level introduction to Zod: what it is, its monorepo structure, key design philosophy (parse-don't-validate, immutable schemas, TypeScript-first), and links to child pages for deeper coverage.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Getting Starteddf",
+      "purpose": "Installation, basic usage (defining schemas, parsing data, handling errors, type inference), and the difference between Zod and Zod Mini. Covers the basics.mdx documentation and the play.ts sandbox.",
+      "parent": "Overview",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Zod v4 vs v3: Migration and Versioning",
+      "purpose": "Documents the v4 release, key breaking changes from v3, the versioning strategy (dual v3/v4 subpath exports), and the migration guide. Covers the changelog and versioning docs.",
+      "parent": "Overview",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Core Architecture",
+      "purpose": "Overview of the internal architecture of Zod v4: the $ZodType base, the _zod internal state, the parse/run lifecycle, and how the Classic and Mini APIs are layered on top of the core. Links to child pages for each major subsystem.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Schema Types and the $ZodType Base",
+      "purpose": "Deep dive into the $ZodType interface, the _zod internal state (def, bag, run, parse), the $constructor pattern, and all built-in schema types (string, number, object, array, union, etc.). Covers the core schemas.ts file.",
+      "parent": "Core Architecture",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Validation Checks and String Formats",
+      "purpose": "Documents the $ZodCheck system: how checks (refinements, min/max, format validators) are defined, attached to schemas, and executed. Covers the checks.ts file, regexes.ts, and the string format registry (email, uuid, url, ip, etc.).",
+      "parent": "Core Architecture",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Parse Pipeline and Execution Engine",
+      "purpose": "Explains the full validation lifecycle: how parse(), safeParse(), parseAsync(), and safeParseAsync() work internally. Covers the parse.ts module, ParsePayload, ParseContext, abort signals, and the JIT optimization in $ZodObjectJIT.",
+      "parent": "Core Architecture",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Classic API vs Zod Mini",
+      "purpose": "Explains the architectural split between the Classic (method-chaining) and Mini (functional, tree-shakable) APIs. Covers how both are built on the shared core/api.ts factory layer, bundle size tradeoffs, and when to use each.",
+      "parent": "Core Architecture",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Schema API Reference",
+      "purpose": "Overview of the full Zod schema API, linking to child pages covering primitives, complex types, transformations, and advanced patterns. Summarizes the api.mdx documentation.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Primitive and Scalar Schemas",
+      "purpose": "Documents all primitive schema types: z.string(), z.number(), z.boolean(), z.bigint(), z.date(), z.symbol(), z.null(), z.undefined(), z.void(), z.nan(), z.any(), z.unknown(), z.never(), z.literal(), z.enum(). Includes coercion (z.coerce.*) and ISO date/time schemas.",
+      "parent": "Schema API Reference",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Object, Array, and Collection Schemas",
+      "purpose": "Documents z.object(), z.strictObject(), z.looseObject(), z.array(), z.tuple(), z.record(), z.map(), z.set(), and z.file(). Covers shape manipulation methods (.extend(), .pick(), .omit(), .partial(), .required(), .merge()), catchall, and unknown key handling modes.",
+      "parent": "Schema API Reference",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Union, Intersection, and Discriminated Union",
+      "purpose": "Documents z.union(), z.discriminatedUnion(), z.intersection(), z.xor(). Explains the fast-path dispatching in discriminated unions, the propValues lookup map, and how union errors are collected.",
+      "parent": "Schema API Reference",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Transforms, Pipes, and Codecs",
+      "purpose": "Documents .transform(), .pipe(), z.codec(), and the bidirectional encode/decode system. Explains the forward/backward direction concept, $ZodPipe, $ZodCodec, and built-in codecs like stringToDate and jsonCodec.",
+      "parent": "Schema API Reference",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Refinements, Defaults, and Special Wrappers",
+      "purpose": "Documents .refine(), .superRefine(), .check(), .default(), .prefault(), .optional(), .nullable(), .readonly(), .catch(), .brand(), and z.lazy(). Explains the difference between default and prefault, branded types, and recursive schema patterns.",
+      "parent": "Schema API Reference",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Error Handling",
+      "purpose": "Overview of Zod's error system: ZodError, ZodIssue, error maps, formatting utilities, and localization. Links to child pages for customization and i18n.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "ZodError and Issue Types",
+      "purpose": "Documents the $ZodError class, the $ZodIssue type hierarchy (invalid_type, too_big, too_small, invalid_format, unrecognized_keys, invalid_union, etc.), the issues array, and error formatting utilities (treeifyError, prettifyError, flattenError, formatError).",
+      "parent": "Error Handling",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Error Customization and Localization",
+      "purpose": "Documents the $ZodErrorMap interface, the error map precedence chain (schema-level > per-parse > global > locale), z.config(), and the full locale system (50+ languages). Explains how to write custom error maps and load locales.",
+      "parent": "Error Handling",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "JSON Schema Integration",
+      "purpose": "Overview of Zod's JSON Schema capabilities: converting Zod schemas to JSON Schema and importing JSON Schema as Zod schemas. Links to child pages for each direction.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Zod to JSON Schema (toJSONSchema)",
+      "purpose": "Documents the toJSONSchema() conversion engine: supported targets (draft-4, draft-7, draft-2020-12, openapi-3.0), ToJSONSchemaParams, the Processor visitor pattern, $ref/cycle handling, io (input/output) modes, and registry-based schema generation.",
+      "parent": "JSON Schema Integration",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "JSON Schema to Zod (fromJSONSchema)",
+      "purpose": "Documents the fromJSONSchema() converter: supported JSON Schema keywords, conversion context, registry integration, and limitations. Covers the from-json-schema.ts module and its tests.",
+      "parent": "JSON Schema Integration",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Metadata and Registries",
+      "purpose": "Documents the $ZodRegistry system, the globalRegistry, the .meta() and .describe() methods, the JSONSchemaMeta interface, and how metadata is used for JSON Schema generation, AI structured outputs, and form validation.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Standard Schema Compatibility",
+      "purpose": "Documents Zod's implementation of the Standard Schema V1 spec (~standard property), how it enables interoperability with other validation libraries, and guidance for library authors on using zod/v4/core as a peer dependency.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Package Distribution and Build System",
+      "purpose": "Overview of how Zod is packaged, built, and distributed. Covers the monorepo structure, subpath exports, build tooling, and CI/CD. Links to child pages for each concern.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Package Exports and Module Resolution",
+      "purpose": "Documents the exports map in packages/zod/package.json: all subpath entrypoints (root, /mini, /v4, /v3, /v4/core, /v4/locales/*), the @zod/source condition, CJS/ESM dual output, JSR publishing via jsr.json, and the write-stub-package-jsons.ts postbuild script.",
+      "parent": "Package Distribution and Build System",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "CI/CD: Testing and Release Automation",
+      "purpose": "Documents the GitHub Actions workflows: test.yml (lint, format, circular dependency check, TypeScript matrix testing) and release.yml (NPM publish, JSR publish, canary versioning, changelog generation). Covers the pnpm workspace commands.",
+      "parent": "Package Distribution and Build System",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Benchmarking and Performance Testing",
+      "purpose": "Documents the packages/bench suite: what benchmarks exist (object parsing, discriminated unions, JIT vs jitless, error handling, safe parse), how to run them, and how Zod compares to arktype and valibot. Also covers the packages/tsc TypeScript compiler performance tests.",
+      "parent": "Package Distribution and Build System",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Ecosystem and Integrations",
+      "purpose": "Overview of the Zod ecosystem: third-party integrations, the docs website, and the integration test package. Links to child pages for the ecosystem registry and the documentation site.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Third-Party Ecosystem",
+      "purpose": "Catalogs the Zod ecosystem: API libraries (tRPC, oRPC), form integrations (react-hook-form, TanStack Form), schema converters (zod-to-json-schema, drizzle-zod, orval), mocking libraries, and utilities. Documents the ZodResource interface and ecosystem.tsx data model.",
+      "parent": "Ecosystem and Integrations",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Documentation Site",
+      "purpose": "Documents the packages/docs Next.js site built with fumadocs: the content structure (MDX files), the app router layout, the LLM text routes (llms.txt, llms-full.txt), the blog, the GitHub stars loader, and the sponsorship components (Platinum, Gold, Silver, Bronze).",
+      "parent": "Ecosystem and Integrations",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    },
+    {
+      "title": "Glossary",
+      "purpose": "Definitions of all codebase-specific terms, jargon, abbreviations, and domain concepts that an onboarding engineer needs to know. Each term includes code pointers to relevant files, classes, or functions.",
+      "page_notes": [
+        {
+          "content": ""
+        }
+      ]
+    }
+  ]
+}
