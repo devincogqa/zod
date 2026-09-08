@@ -1,0 +1,46 @@
+/**
+ * Object utility helpers for common object operations.
+ */
+
+export function pick<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: readonly K[]): Pick<T, K> {
+  const result = {} as Pick<T, K>;
+  for (const key of keys) {
+    if (key in obj) {
+      result[key] = obj[key];
+    }
+  }
+  return result;
+}
+
+export function omit<T extends Record<string, unknown>, K extends keyof T>(obj: T, keys: readonly K[]): Omit<T, K> {
+  const result = { ...obj };
+  for (const key of keys) {
+    delete result[key];
+  }
+  return result as Omit<T, K>;
+}
+
+export function deepMerge<T extends Record<string, unknown>>(target: T, source: Partial<T>): T {
+  const result = { ...target };
+  for (const key of Object.keys(source) as Array<keyof T>) {
+    const sourceVal = source[key];
+    const targetVal = result[key];
+    if (
+      sourceVal !== null &&
+      typeof sourceVal === "object" &&
+      !Array.isArray(sourceVal) &&
+      targetVal !== null &&
+      typeof targetVal === "object" &&
+      !Array.isArray(targetVal)
+    ) {
+      result[key] = deepMerge(targetVal as Record<string, unknown>, sourceVal as Record<string, unknown>) as T[keyof T];
+    } else {
+      result[key] = sourceVal as T[keyof T];
+    }
+  }
+  return result;
+}
+
+export function hasKey<T extends Record<string, unknown>>(obj: T, key: string): boolean {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
