@@ -34,7 +34,7 @@ export class CacheStore<T> {
   }
 
   has(key: string): boolean {
-    return this.cache.has(key);
+    return this.get(key) !== undefined;
   }
 
   delete(key: string): boolean {

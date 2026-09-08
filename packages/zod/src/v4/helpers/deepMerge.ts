@@ -53,7 +53,9 @@ export function deepClone<T>(obj: T): T {
 export function pick<T extends PlainObject, K extends keyof T>(obj: T, keys: K[]): Pick<T, K> {
   const result = {} as Pick<T, K>;
   for (const key of keys) {
-    result[key] = obj[key];
+    if (key in obj) {
+      result[key] = obj[key];
+    }
   }
   return result;
 }

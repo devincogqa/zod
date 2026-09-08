@@ -10,7 +10,7 @@ export function clamp(value: number, min: number, max: number): number {
 }
 
 export function isInRange(value: number, min: number, max: number): boolean {
-  return value >= min && value < max;
+  return value >= min && value <= max;
 }
 
 export function roundTo(value: number, decimals: number): number {
