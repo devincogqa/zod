@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// Dummy PR: testing schema validation examples
 const type1 = z.literal(["a", "b", "c"]);
 const type2 = z.literal([1, 2, 3]);
 
