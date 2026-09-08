@@ -563,6 +563,10 @@ export function stringifyPrimitive(value: any): string {
   return `${value}`;
 }
 
+export function reviewFlowIsIterable(value: unknown): boolean {
+  return value != null && typeof (value as Iterable<unknown>)[Symbol.iterator] === "function";
+}
+
 export function optionalKeys(shape: schemas.$ZodShape): string[] {
   return Object.keys(shape).filter((k) => {
     return shape[k]!._zod.optin === "optional" && shape[k]!._zod.optout === "optional";

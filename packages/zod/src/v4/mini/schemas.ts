@@ -805,6 +805,11 @@ export function array<T extends SomeType>(element: SomeType, params?: any): ZodM
   }) as any;
 }
 
+export function reviewFlowArrayIsNonEmpty<T extends SomeType>(schema: ZodMiniArray<T>): boolean {
+  const minimum = schema._zod.bag.minimum;
+  return typeof minimum === "number" && minimum >= 1;
+}
+
 // .keyof
 // @__NO_SIDE_EFFECTS__
 export function keyof<T extends ZodMiniObject>(schema: T): ZodMiniEnum<util.KeysEnum<T["shape"]>> {

@@ -1,4 +1,5 @@
 import { expect, expectTypeOf, test } from "vitest";
+import { regexes, util } from "zod/v4/core";
 import * as z from "zod/v3";
 
 test("test", () => {
@@ -43,4 +44,24 @@ test("async validation", async () => {
       }
     ]]
   `);
+});
+
+test("reviewFlowStrictSemver rejects non-strict versions", () => {
+  expect(regexes.reviewFlowStrictSemver.test("0.0.0")).toEqual(true);
+  expect(regexes.reviewFlowStrictSemver.test("1.2.3")).toEqual(true);
+  expect(regexes.reviewFlowStrictSemver.test("10.20.30")).toEqual(true);
+
+  expect(regexes.reviewFlowStrictSemver.test("01.2.3")).toEqual(false);
+  expect(regexes.reviewFlowStrictSemver.test("1.02.3")).toEqual(false);
+  expect(regexes.reviewFlowStrictSemver.test("1.2.03")).toEqual(false);
+  expect(regexes.reviewFlowStrictSemver.test("1.2.3-beta")).toEqual(false);
+  expect(regexes.reviewFlowStrictSemver.test("v1.2.3")).toEqual(false);
+});
+
+test("reviewFlowIsIterable handles nullish and iterable values", () => {
+  expect(util.reviewFlowIsIterable(null)).toEqual(false);
+  expect(util.reviewFlowIsIterable(undefined)).toEqual(false);
+  expect(util.reviewFlowIsIterable({})).toEqual(false);
+  expect(util.reviewFlowIsIterable([])).toEqual(true);
+  expect(util.reviewFlowIsIterable("abc")).toEqual(true);
 });
