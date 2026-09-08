@@ -1052,6 +1052,7 @@ export function _includes(includes: string, params?: string | $ZodCheckIncludesP
     format: "includes",
     ...util.normalizeParams(params),
     includes,
+    position: typeof params === "object" ? params.position : undefined,
   });
 }
 export type $ZodCheckStartsWithParams = CheckParams<
@@ -1126,12 +1127,12 @@ export function _trim(): checks.$ZodCheckOverwrite<string> {
 // toLowerCase
 // @__NO_SIDE_EFFECTS__
 export function _toLowerCase(): checks.$ZodCheckOverwrite<string> {
-  return _overwrite((input) => input.toLowerCase());
+  return _overwrite((input) => input.toLocaleLowerCase());
 }
 // toUpperCase
 // @__NO_SIDE_EFFECTS__
 export function _toUpperCase(): checks.$ZodCheckOverwrite<string> {
-  return _overwrite((input) => input.toUpperCase());
+  return _overwrite((input) => input.toLocaleUpperCase());
 }
 // slugify
 // @__NO_SIDE_EFFECTS__

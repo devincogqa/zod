@@ -153,6 +153,13 @@ test(".multipleOf() with negative divisor", () => {
   expect(() => schema.parse(7.5)).toThrow();
 });
 
+test(".multipleOf() with negative decimal divisor", () => {
+  const schema = z.number().multipleOf(-0.5);
+  expect(schema.parse(1.5)).toEqual(1.5);
+  expect(schema.parse(-1.5)).toEqual(-1.5);
+  expect(() => schema.parse(1.25)).toThrow();
+});
+
 test(".multipleOf() with scientific notation (multi-digit exponents)", () => {
   // Regression test for https://github.com/colinhacks/zod/pull/5687
   // The regex was using \d? which only matches single-digit exponents

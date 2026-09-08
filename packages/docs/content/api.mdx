@@ -198,6 +198,7 @@ z.string().regex(/^[a-z]+$/);
 z.string().startsWith("aaa");
 z.string().endsWith("zzz");
 z.string().includes("---");
+z.string().includes("---", { position: 4 });
 z.string().uppercase();
 z.string().lowercase();
 ```
@@ -211,6 +212,7 @@ z.string().check(z.regex(/^[a-z]+$/));
 z.string().check(z.startsWith("aaa"));
 z.string().check(z.endsWith("zzz"));
 z.string().check(z.includes("---"));
+z.string().check(z.includes("---", { position: 4 }));
 z.string().check(z.uppercase());
 z.string().check(z.lowercase());
 ```
