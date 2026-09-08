@@ -34,7 +34,15 @@ export class CacheStore<T> {
   }
 
   has(key: string): boolean {
-    return this.get(key) !== undefined;
+    const entry = this.cache.get(key);
+    if (!entry) return false;
+
+    if (Date.now() > entry.expiresAt) {
+      this.cache.delete(key);
+      return false;
+    }
+
+    return true;
   }
 
   delete(key: string): boolean {
