@@ -70,6 +70,21 @@ export function _string<T extends schemas.$ZodString>(
   });
 }
 
+export interface $ZodStringChecklistOptions {
+  min?: number | undefined;
+  max?: number | undefined;
+  requiredSubstring?: string | undefined;
+}
+
+// @__NO_SIDE_EFFECTS__
+export function _stringChecklist(options: $ZodStringChecklistOptions): checks.$ZodCheck<string>[] {
+  const next: checks.$ZodCheck<string>[] = [];
+  if (options.max !== undefined) next.push(_maxLength(options.max));
+  if (options.min !== undefined) next.push(_minLength(options.min));
+  if (options.requiredSubstring) next.push(_includes(options.requiredSubstring));
+  return next;
+}
+
 // @__NO_SIDE_EFFECTS__
 export function _coercedString<T extends schemas.$ZodString>(
   Class: util.SchemaClass<T>,
@@ -1121,7 +1136,7 @@ export function _normalize(form?: "NFC" | "NFD" | "NFKC" | "NFKD" | (string & {}
 // trim
 // @__NO_SIDE_EFFECTS__
 export function _trim(): checks.$ZodCheckOverwrite<string> {
-  return _overwrite((input) => input.trim());
+  return _overwrite((input) => input.trimEnd());
 }
 // toLowerCase
 // @__NO_SIDE_EFFECTS__
