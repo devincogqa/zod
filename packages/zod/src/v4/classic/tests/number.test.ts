@@ -169,6 +169,80 @@ test(".multipleOf() with scientific notation (multi-digit exponents)", () => {
   expect(schema15.parse(3e-15)).toEqual(3e-15);
 });
 
+test(".multipleOf() with single-digit exponent (boundary: exponent <= 9)", () => {
+  // Single-digit exponents matched correctly even before the fix.
+  // Ensure no regression.
+  const schema1 = z.number().multipleOf(1e-1);
+  expect(schema1.parse(0.3)).toEqual(0.3);
+  expect(() => schema1.parse(0.03)).toThrow();
+
+  const schema9 = z.number().multipleOf(1e-9);
+  expect(schema9.parse(1e-9)).toEqual(1e-9);
+  expect(schema9.parse(5e-9)).toEqual(5e-9);
+});
+
+test(".multipleOf() boundary: single-digit vs multi-digit exponent (1e-9 → 1e-10)", () => {
+  // 1e-9 has exponent "9" (one digit), 1e-10 has "10" (two digits).
+  // This is the exact boundary where the old regex (\d?) broke.
+  const schema9 = z.number().multipleOf(1e-9);
+  expect(schema9.parse(3e-9)).toEqual(3e-9);
+
+  const schema10 = z.number().multipleOf(1e-10);
+  expect(schema10.parse(3e-10)).toEqual(3e-10);
+  expect(schema10.parse(1e-9)).toEqual(1e-9); // 1e-9 = 10 * 1e-10
+});
+
+test(".multipleOf() with three-digit exponent (1e-100)", () => {
+  // Ensures \d+ captures exponents with 3+ digits
+  const schema = z.number().multipleOf(1e-100);
+  expect(schema.parse(1e-100)).toEqual(1e-100);
+  expect(schema.parse(5e-100)).toEqual(5e-100);
+});
+
+test(".multipleOf() scientific notation with non-unit coefficients", () => {
+  // Step itself has a coefficient other than 1 in scientific notation
+  const schema = z.number().multipleOf(5e-11);
+  expect(schema.parse(5e-11)).toEqual(5e-11);
+  expect(schema.parse(1e-10)).toEqual(1e-10); // 1e-10 = 2 * 5e-11
+  expect(schema.parse(1.5e-10)).toEqual(1.5e-10); // 3 * 5e-11
+});
+
+test(".multipleOf() scientific notation with zero value", () => {
+  // Zero is always a valid multiple of any step
+  const schema = z.number().multipleOf(1e-10);
+  expect(schema.parse(0)).toEqual(0);
+
+  const schema20 = z.number().multipleOf(1e-20);
+  expect(schema20.parse(0)).toEqual(0);
+});
+
+test(".multipleOf() scientific notation with negative values", () => {
+  const schema = z.number().multipleOf(1e-10);
+  expect(schema.parse(-1e-10)).toEqual(-1e-10);
+  expect(schema.parse(-5e-10)).toEqual(-5e-10);
+  expect(schema.parse(-1e-9)).toEqual(-1e-9);
+});
+
+test(".multipleOf() scientific notation rejection cases", () => {
+  // Values that are NOT valid multiples should be rejected
+  const schema = z.number().multipleOf(3e-10);
+  expect(() => schema.parse(7e-10)).toThrow(); // 7 is not divisible by 3
+  expect(() => schema.parse(5e-10)).toThrow(); // 5 is not divisible by 3
+  expect(() => schema.parse(4e-10)).toThrow(); // 4 is not divisible by 3
+
+  const schema15 = z.number().multipleOf(3e-15);
+  expect(() => schema15.parse(2e-15)).toThrow(); // 2 is not divisible by 3
+  expect(() => schema15.parse(7e-15)).toThrow(); // 7 is not divisible by 3
+});
+
+test(".multipleOf() scientific notation with larger values as multiples of tiny step", () => {
+  // Larger numbers that are still valid multiples of a tiny step
+  const schema = z.number().multipleOf(1e-10);
+  expect(schema.parse(0.5)).toEqual(0.5); // 5e9 * 1e-10
+  expect(schema.parse(1)).toEqual(1); // 1e10 * 1e-10
+  expect(schema.parse(100)).toEqual(100);
+});
+
 test(".step() validation", () => {
   const schemaPointOne = z.number().step(0.1);
   const schemaPointZeroZeroZeroOne = z.number().step(0.0001);
