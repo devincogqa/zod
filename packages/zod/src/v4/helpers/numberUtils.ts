@@ -25,6 +25,11 @@ export function toOrdinal(n: number): string {
   return `${n}${suffix}`;
 }
 
+export function percentOf(value: number, total: number): number {
+  if (total === 0) return 0;
+  return (value / total) * 100;
+}
+
 export function parseNumericString(str: string): number | null {
   const parsed = Number(str);
   if (Number.isNaN(parsed)) return null;

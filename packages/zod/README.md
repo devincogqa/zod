@@ -206,3 +206,7 @@ type MySchemaIn = z.input<typeof mySchema>;
 type MySchemaOut = z.output<typeof mySchema>; // equivalent to z.infer<typeof mySchema>
 // number
 ```
+
+### Learn more
+
+Full API documentation, guides, and migration notes live at [zod.dev](https://zod.dev). Questions and discussion happen in the [Discord server](https://discord.gg/RcG33DQJdf).
