@@ -26,6 +26,10 @@ export const safeParse: <T extends core.$ZodType>(
   // _params?: { callee?: core.util.AnyFunc; Err?: core.$ZodErrorClass }
 ) => ZodSafeParseResult<core.output<T>> = /* @__PURE__ */ core._safeParse(ZodRealError) as any;
 
+export function isSafeParseSuccess<T>(result: ZodSafeParseResult<T>): result is ZodSafeParseSuccess<T> {
+  return result.success;
+}
+
 export const safeParseAsync: <T extends core.$ZodType>(
   schema: T,
   value: unknown,

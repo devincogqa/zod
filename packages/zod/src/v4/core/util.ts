@@ -325,6 +325,11 @@ export function getElementAtPath(obj: any, path: (string | number)[] | null | un
   return path.reduce((acc, key) => acc?.[key], obj);
 }
 
+export function summarizePath(path: readonly PropertyKey[], maxSegments = 3): string {
+  const trimmed = path.slice(0, maxSegments);
+  return trimmed.map((segment) => String(segment)).join(".");
+}
+
 export function promiseAllObject<T extends object>(promisesObj: T): Promise<{ [k in keyof T]: Awaited<T[k]> }> {
   const keys = Object.keys(promisesObj);
   const promises = keys.map((key) => (promisesObj as any)[key]);
