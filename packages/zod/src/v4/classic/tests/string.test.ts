@@ -849,6 +849,11 @@ test("lowerCase", () => {
   expect(z.string().toUpperCase().parse("asdf")).toEqual("ASDF");
 });
 
+test("capitalize", () => {
+  expect(z.string().capitalize().parse("z")).toEqual("Z");
+  expect(z.string().check(z.capitalize()).parse("a")).toEqual("A");
+});
+
 test("slugify", () => {
   expect(z.string().slugify().parse("Hello World")).toEqual("hello-world");
   expect(z.string().slugify().parse("  Hello   World  ")).toEqual("hello-world");
