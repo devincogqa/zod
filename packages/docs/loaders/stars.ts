@@ -19,8 +19,12 @@ export async function fetchStars(resources: { slug: string; stars?: number }[]) 
 
     const queryParts = uniqueSlugs.map(({ id, slug }) => {
       const [owner, name] = slug.split("/");
+      // Sanitize owner and name to prevent GraphQL injection.
+      // GitHub owner/repo names only contain alphanumeric chars, hyphens, dots, and underscores.
+      const safeOwner = (owner ?? "").replace(/[^a-zA-Z0-9._-]/g, "");
+      const safeName = (name ?? "").replace(/[^a-zA-Z0-9._-]/g, "");
       return `
-      repo${id}: repository(owner: "${owner}", name: "${name}") {
+      repo${id}: repository(owner: "${safeOwner}", name: "${safeName}") {
         stargazerCount
       }
     `;
@@ -50,8 +54,8 @@ export async function fetchStars(resources: { slug: string; stars?: number }[]) 
     const json = await res.json();
 
     if (json.errors) {
-      console.dir(json.errors, { depth: null });
-      throw new Error("Failed to fetch GitHub stars");
+      const messages = json.errors.map((e: { message?: string }) => e.message ?? "unknown error").join("; ");
+      throw new Error(`Failed to fetch GitHub stars: ${messages}`);
     }
 
     // Create a map of slug → star count
@@ -71,10 +75,8 @@ export async function fetchStars(resources: { slug: string; stars?: number }[]) 
     // sort by star coun (descending) in place
     resources.sort((a, b) => (b.stars || 0) - (a.stars || 0));
   } catch (_) {
-    console.log(_);
-
     if (process.env.NODE_ENV === "production") {
-      throw new Error("Failed to fetch GitHub stars");
+      throw new Error(`Failed to fetch GitHub stars: ${_ instanceof Error ? _.message : "unknown error"}`);
     }
   }
 }
