@@ -206,4 +206,6 @@ type MySchemaIn = z.input<typeof mySchema>;
 type MySchemaOut = z.output<typeof mySchema>; // equivalent to z.infer<typeof mySchema>
 // number
 ```
+
 QA fixture run-1791599000084
+QA fixture run-1792030978119
