@@ -40,6 +40,6 @@ export function fibonacci(n: number): number {
 }
 
 export function roundTo(value: number, decimals: number): number {
-  const factor = Math.pow(10, decimals);
+  const factor = 10 ** decimals;
   return Math.round(value * factor) / factor;
 }

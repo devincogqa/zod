@@ -23,6 +23,10 @@ export function snakeToCamel(str: string): string {
   return str.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase());
 }
 
+export function stripWhitespace(str: string): string {
+  return str.replace(/\s+/g, "");
+}
+
 export function pluralize(word: string, count: number): string {
   if (count === 1) return word;
   if (word.endsWith("y")) {
