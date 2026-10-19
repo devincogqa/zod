@@ -1,43 +1,50 @@
 /**
- * Lightweight validation helpers that complement Zod schemas.
+ * Validation helper functions for common data checks
  */
 
 /**
- * Check if a value is a non-empty string.
+ * Check if a value is a non-empty string
  */
 export function isNonEmptyString(value: unknown): value is string {
-  return typeof value === "string" && value.length > 0;
+  return typeof value === "string" && value.trim().length > 0;
 }
 
 /**
- * Check if a value is a valid integer.
+ * Check if a value is a positive integer
  */
-export function isInteger(value: unknown): value is number {
-  return typeof value === "number" && Number.isInteger(value);
+export function isPositiveInteger(value: unknown): value is number {
+  return typeof value === "number" && Number.isInteger(value) && value > 0;
 }
 
 /**
- * Check if a string matches a simple email pattern.
- * (Not RFC-compliant; intended for quick sanity checks.)
+ * Check if a string matches a URL pattern
  */
-export function isEmailLike(value: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
-
-/**
- * Check if a value is a plain object (not an array, null, or class instance).
- */
-export function isPlainObject(value: unknown): value is Record<string, unknown> {
-  if (typeof value !== "object" || value === null) return false;
-  const proto = Object.getPrototypeOf(value);
-  return proto === Object.prototype || proto === null;
-}
-
-/**
- * Assert that a condition is truthy; throws with the provided message otherwise.
- */
-export function invariant(condition: unknown, message: string): asserts condition {
-  if (!condition) {
-    throw new Error(`Invariant violation: ${message}`);
+export function isValidUrl(value: string): boolean {
+  try {
+    new URL(value);
+    return true;
+  } catch {
+    return false;
   }
+}
+
+/**
+ * Validate a hex color string
+ */
+export function isHexColor(value: string): boolean {
+  return /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/.test(value);
+}
+
+/**
+ * Check if a string is a valid UUID v4
+ */
+export function isUUID(value: string): boolean {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+}
+
+/**
+ * Validate a phone number (basic international format)
+ */
+export function isPhoneNumber(value: string): boolean {
+  return /^\+?[1-9]\d{1,14}$/.test(value);
 }
