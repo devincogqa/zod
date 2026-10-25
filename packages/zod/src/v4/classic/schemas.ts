@@ -282,6 +282,7 @@ export interface _ZodString<T extends core.$ZodStringInternals<unknown> = core.$
   normalize(form?: "NFC" | "NFD" | "NFKC" | "NFKD" | (string & {})): this;
   toLowerCase(): this;
   toUpperCase(): this;
+  capitalize(): this;
   slugify(): this;
 }
 
@@ -314,6 +315,7 @@ export const _ZodString: core.$constructor<_ZodString> = /*@__PURE__*/ core.$con
   inst.normalize = (...args) => inst.check(checks.normalize(...args));
   inst.toLowerCase = () => inst.check(checks.toLowerCase());
   inst.toUpperCase = () => inst.check(checks.toUpperCase());
+  inst.capitalize = () => inst.check(checks.capitalize());
   inst.slugify = () => inst.check(checks.slugify());
 });
 
