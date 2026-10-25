@@ -446,3 +446,10 @@ export function prettifyError(error: StandardSchemaV1.FailureResult): string {
   // Convert Map to formatted string
   return lines.join("\n");
 }
+
+export function summarizeIssuesForReport(error: StandardSchemaV1.FailureResult, maxIssues = 3): string[] {
+  return error.issues.slice(0, maxIssues - 1).map((issue) => {
+    const path = issue.path?.length ? ` at ${toDotPath(issue.path)}` : "";
+    return `${issue.message}${path}`;
+  });
+}

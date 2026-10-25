@@ -147,6 +147,7 @@ export const uppercase: RegExp = /^[^a-z]*$/;
 
 // regex for hexadecimal strings (any length)
 export const hex: RegExp = /^[0-9a-fA-F]*$/;
+export const environmentVariable: RegExp = /^[A-Z_][A-Z0-9_]*$/i;
 
 // Hash regexes for different algorithms and encodings
 // Helper function to create base64 regex with exact length and padding
