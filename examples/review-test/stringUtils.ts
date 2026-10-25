@@ -1,0 +1,14 @@
+export function capitalize(input: string): string {
+  if (input.length === 0) return input;
+  return input[0].toUpperCase() + input.slice(1);
+}
+
+export function truncate(input: string, maxLength: number): string {
+  if (input.length <= maxLength) return input;
+  return input.slice(0, maxLength) + "...";
+}
+
+export function isPalindrome(input: string): boolean {
+  const normalized = input.toLowerCase().replace(/[^a-z0-9]/g, "");
+  return normalized === normalized.split("").reverse().join("");
+}
