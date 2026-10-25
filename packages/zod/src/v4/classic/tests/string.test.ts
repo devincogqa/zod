@@ -27,6 +27,15 @@ test("length checks", () => {
   expect(() => justFive.parse("123456")).toThrow();
 });
 
+test("string checklist applies common checks", () => {
+  const schema = z.string().checklist({ min: 2, max: 4, requiredSubstring: "ok" });
+
+  expect(schema.parse("ok")).toEqual("ok");
+  expect(() => schema.parse("o")).toThrow();
+  expect(() => schema.parse("ok-too-long")).toThrow();
+  expect(() => schema.parse("fine")).toThrow();
+});
+
 test("includes", () => {
   includes.parse("XincludesXX");
   includesFromIndex2.parse("XXXincludesXX");
