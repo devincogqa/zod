@@ -1,3 +1,4 @@
+<!-- Verify declarative environment setup -->
 <p align="center">
   <img src="logo.svg" width="200px" align="center" alt="Zod logo" />
   <h1 align="center">Zod</h1>
