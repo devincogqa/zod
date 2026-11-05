@@ -14,6 +14,7 @@ export {
   _maxLength as maxLength,
   _minLength as minLength,
   _length as length,
+  _stringChecklist as stringChecklist,
   _regex as regex,
   _lowercase as lowercase,
   _uppercase as uppercase,
